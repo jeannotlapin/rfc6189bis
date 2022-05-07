@@ -6,7 +6,7 @@ docname: draft-zrtp-pq-latest
 ipr: trust200902
 submissiontype: independent
 area: Internet
-wg: 
+wg:
 kw: Internet-Draft
 cat: info
 stand_alone: true
@@ -97,7 +97,7 @@ informative:
          -
           ins: D. Stebila
           name: Douglas Stebila
-   
+
 --- abstract
 
 TODO
@@ -251,7 +251,7 @@ Unfavorable choices will never be made by this method, because each endpoint wil
 
 ##### DH Mode only
 
-A method is provided to allow the two parties to mutually and deterministically choose the same DH key size and algorithm before a Commit message is sent. 
+A method is provided to allow the two parties to mutually and deterministically choose the same DH key size and algorithm before a Commit message is sent.
 
 After removing non intersecting algorithms from the Hello message lists, each endpoint compares the first item on their own list with the first item on the other endpoint's list and SHOULD choose the faster of the two algorithms.  For example:
 
@@ -290,7 +290,7 @@ Example:
 Example:
 
 * Alice's full list: X448, X25519, Kyber512, DH3k
-* Bob's full list: DH3k, Kyber512, X25519, 
+* Bob's full list: DH3k, Kyber512, X25519
 * Alice's intersecting list: X25519, Kyber512, DH3k
 * Bob's intersecting list: DH3k, Kyber512, X25519
 * Alice's first choice is a DH algorithn (X25519), and Bob's first choice is DH algorithm (DH3k): drop Kyber512 from the intersecting lists.
@@ -957,9 +957,9 @@ The ECDH-based KEM is produced using HKDF as defined in {{RFC5869}} based on the
 
 ~~~
 kfd ( ikm, context , outputSize ):
-   ikm = "ZRTPKEM" || ECDHId || "aea_prk" || ikm
+   ikm = "ZRTP" || ECDHId || "aea_prk" || ikm
    salt = ""
-   info =  outputSize || "ZRTPKEM" || ECDHId 
+   info =  outputSize || "ZRTP" || ECDHId
               || "shared_secret" || context
    return HKDF( ikm, salt, info, outputSize )
 
