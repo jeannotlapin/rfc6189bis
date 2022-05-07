@@ -1,7 +1,7 @@
 ---
 title: PostQuantum algorithms in ZRTP Media Path Key Agreement for Unicast Secure RTP
 abbrev: PQ Algoritms in ZRTP
-docname: draft-zrtp-pq-01
+docname: draft-zrtp-pq-latest
 
 ipr: trust200902
 submissiontype: independent
