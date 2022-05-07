@@ -13,7 +13,7 @@
     " name="description">
 <meta content="xml2rfc 3.12.5" name="generator">
 <meta content="Internet-Draft" name="keyword">
-<meta content="draft-zrtp-pq-01" name="ietf.draft">
+<meta content="draft-zrtp-pq-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.12.5
     Python 3.9.7
@@ -1029,7 +1029,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-zrtp-pq-01</dd>
+<dd class="internet-draft">draft-zrtp-pq-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2022-05-07" class="published">7 May 2022</time>
@@ -1059,6 +1059,14 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">TODO<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Source for this draft and an issue tracker can be found at
+    <span><a href="https://github.com/jeannotlapin/rfc6189bis">https://github.com/jeannotlapin/rfc6189bis</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1640,7 +1648,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <ul class="normal">
 <li class="normal" id="section-4.1.2.1.3-6.1">Alice's full list: X448, X25519, Kyber512, DH3k<a href="#section-4.1.2.1.3-6.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-6.2">Bob's full list: DH3k, Kyber512, X25519,<a href="#section-4.1.2.1.3-6.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-6.2">Bob's full list: DH3k, Kyber512, X25519<a href="#section-4.1.2.1.3-6.2" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-4.1.2.1.3-6.3">Alice's intersecting list: X25519, Kyber512, DH3k<a href="#section-4.1.2.1.3-6.3" class="pilcrow">¶</a>
 </li>
@@ -2643,9 +2651,9 @@ publicKey = ECDHderivePublicKey( secretKey )
 <div class="alignLeft art-text artwork" id="section-6.1-10">
 <pre>
 kfd ( ikm, context , outputSize ):
-   ikm = "ZRTPKEM" || ECDHId || "aea_prk" || ikm
+   ikm = "ZRTP" || ECDHId || "aea_prk" || ikm
    salt = ""
-   info =  outputSize || "ZRTPKEM" || ECDHId
+   info =  outputSize || "ZRTP" || ECDHId
               || "shared_secret" || context
    return HKDF( ikm, salt, info, outputSize )
 

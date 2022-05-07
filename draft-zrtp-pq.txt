@@ -13,11 +13,18 @@ Expires: 8 November 2022                                           Avaya
 
   PostQuantum algorithms in ZRTP Media Path Key Agreement for Unicast
                                Secure RTP
-                            draft-zrtp-pq-01
+                          draft-zrtp-pq-latest
 
 Abstract
 
    TODO
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/jeannotlapin/rfc6189bis.
 
 Status of This Memo
 
@@ -419,7 +426,7 @@ Table of Contents
 
    *  Alice's full list: X448, X25519, Kyber512, DH3k
 
-   *  Bob's full list: DH3k, Kyber512, X25519,
+   *  Bob's full list: DH3k, Kyber512, X25519
 
    *  Alice's intersecting list: X25519, Kyber512, DH3k
 
@@ -1290,9 +1297,9 @@ Table of Contents
    based on the negotiated hash algorithm:
 
    kfd ( ikm, context , outputSize ):
-      ikm = "ZRTPKEM" || ECDHId || "aea_prk" || ikm
+      ikm = "ZRTP" || ECDHId || "aea_prk" || ikm
       salt = ""
-      info =  outputSize || "ZRTPKEM" || ECDHId
+      info =  outputSize || "ZRTP" || ECDHId
                  || "shared_secret" || context
       return HKDF( ikm, salt, info, outputSize )
 
