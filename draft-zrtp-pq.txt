@@ -5,10 +5,10 @@
 Network Working Group                                      P. Zimmermann
 Internet-Draft                                             Zfone Project
 Intended status: Informational                               A. Johnston
-Expires: 8 November 2022                                           Avaya
+Expires: 9 November 2022                                           Avaya
                                                                J. Callas
                                                              Apple, Inc.
-                                                              7 May 2022
+                                                              8 May 2022
 
 
   PostQuantum algorithms in ZRTP Media Path Key Agreement for Unicast
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 November 2022.
+   This Internet-Draft will expire on 9 November 2022.
 
 Copyright Notice
 
@@ -976,6 +976,80 @@ Table of Contents
 
 5.2.5.  Key Agreement Type Block
 
+
+   +==========================+=======+===============================+
+   | Key Agreement Type Block |   pv  |            Meaning            |
+   |                          | words |                               |
+   +==========================+=======+===============================+
+   | "DH3k"                   |   96  | DH mode with p=3072 bit prime |
+   |                          |       |    per RFC 3526, Section 4.   |
+   +--------------------------+-------+-------------------------------+
+   | "DH2k"                   |   64  | DH mode with p=2048 bit prime |
+   |                          |       |    per RFC 3526, Section 3.   |
+   +--------------------------+-------+-------------------------------+
+   | "EC25"                   |   8   |  Elliptic Curve DH, P-256 per |
+   |                          |       |     RFC 5114, Section 2.6     |
+   +--------------------------+-------+-------------------------------+
+   | "EC38"                   |   12  |  Elliptic Curve DH, P-384 per |
+   |                          |       |     RFC 5114, Section 2.7     |
+   +--------------------------+-------+-------------------------------+
+   | "X255"                   |   8   |   ECDH X25519 per [RFC7748]   |
+   +--------------------------+-------+-------------------------------+
+   | "X414"                   |   13  |     ECDH 41417 per [Ber14]    |
+   +--------------------------+-------+-------------------------------+
+   | "X448"                   |   14  |    ECDH X448 per [RFC7748]    |
+   +--------------------------+-------+-------------------------------+
+
+           Table 2: Key Agreement Type Block values for DH Mode
+
+   +==========================+==========+==========+=================+
+   | Key Agreement Type Block | pk words | ct words |     Meaning     |
+   +==========================+==========+==========+=================+
+   | "KYB1"                   |   200    |   192    |     Kyber512    |
+   +--------------------------+----------+----------+-----------------+
+   | "KYB2"                   |   296    |   272    |     Kyber768    |
+   +--------------------------+----------+----------+-----------------+
+   | "KYB3"                   |   392    |   392    |    Kyber1024    |
+   +--------------------------+----------+----------+-----------------+
+   | "SIK1"                   |    83    |    87    |     Sike434     |
+   +--------------------------+----------+----------+-----------------+
+   | "SIK2"                   |   116    |   122    |     Sike610     |
+   +--------------------------+----------+----------+-----------------+
+   | "SIK3"                   |   141    |   149    |     Sike751     |
+   +--------------------------+----------+----------+-----------------+
+   | "X1K1"                   |   208    |   200    | X25519/Kyber512 |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+   | "X1S1"                   |    91    |    95    |  X25519/Sike434 |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+   | "X2K2"                   |   309    |   285    | X41417/Kyber768 |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+   | "X2S2"                   |   129    |   135    |  X41417/Sike610 |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+   | "X3K3"                   |   406    |   406    |  X448/Kyber1024 |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+   | "X2S3"                   |   155    |   159    |   X448/Sike751  |
+   |                          |          |          |      Hybrid     |
+   +--------------------------+----------+----------+-----------------+
+
+          Table 3: Key Agreement Type Block values for KEM Mode
+
+   +==========================+===============+=========+=============+
+   | Key Agreement Type Block | message words | Meaning |             |
+   +==========================+===============+=========+=============+
+   | "Prsh"                   |       -       |    -    |  Preshared  |
+   |                          |               |         | Non-DH mode |
+   +--------------------------+---------------+---------+-------------+
+   | "Mult"                   |       -       |    -    | Multistream |
+   |                          |               |         | Non-DH mode |
+   +--------------------------+---------------+---------+-------------+
+
+    Table 4: Key Agreement Type Block values for non key exchange mode
+
 5.2.6.  SAS Type Block
 
 5.2.7.  Signature Type Block
@@ -1328,7 +1402,7 @@ Table of Contents
                     | 0x0022 | X41417    | [Ber14]   |
                     +--------+-----------+-----------+
 
-                            Table 2: ECDH IDs
+                            Table 5: ECDH IDs
 
 6.2.  KEM combiner
 

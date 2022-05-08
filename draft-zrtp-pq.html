@@ -1019,7 +1019,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Zimmermann, et al.</td>
-<td class="center">Expires 8 November 2022</td>
+<td class="center">Expires 9 November 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1032,12 +1032,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-zrtp-pq-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-05-07" class="published">7 May 2022</time>
+<time datetime="2022-05-08" class="published">8 May 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-11-08">8 November 2022</time></dd>
+<dd class="expires"><time datetime="2022-11-09">9 November 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1087,7 +1087,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2163,7 +2163,183 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <section id="section-5.2.5">
           <h4 id="name-key-agreement-type-block">
 <a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-key-agreement-type-block" class="section-name selfRef">Key Agreement Type Block</a>
-        </h4>
+          </h4>
+<p id="section-5.2.5-1"></p>
+<span id="name-key-agreement-type-block-va"></span><div id="KeyAgreementTypeBlockValuesDHMode">
+<table class="center" id="table-2">
+            <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-key-agreement-type-block-va" class="selfRef">Key Agreement Type Block values for DH Mode</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Key Agreement Type Block</th>
+                <th class="text-center" rowspan="1" colspan="1">pv words</th>
+                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"DH3k"</td>
+                <td class="text-center" rowspan="1" colspan="1">96</td>
+                <td class="text-center" rowspan="1" colspan="1">DH mode with p=3072 bit prime per RFC 3526, Section 4.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"DH2k"</td>
+                <td class="text-center" rowspan="1" colspan="1">64</td>
+                <td class="text-center" rowspan="1" colspan="1">DH mode with p=2048 bit prime per RFC 3526, Section 3.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"EC25"</td>
+                <td class="text-center" rowspan="1" colspan="1">8</td>
+                <td class="text-center" rowspan="1" colspan="1">Elliptic Curve DH, P-256 per RFC 5114, Section 2.6</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"EC38"</td>
+                <td class="text-center" rowspan="1" colspan="1">12</td>
+                <td class="text-center" rowspan="1" colspan="1">Elliptic Curve DH, P-384 per RFC 5114, Section 2.7</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X255"</td>
+                <td class="text-center" rowspan="1" colspan="1">8</td>
+                <td class="text-center" rowspan="1" colspan="1">ECDH X25519 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X414"</td>
+                <td class="text-center" rowspan="1" colspan="1">13</td>
+                <td class="text-center" rowspan="1" colspan="1">ECDH 41417 per <span>[<a href="#Ber14" class="xref">Ber14</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X448"</td>
+                <td class="text-center" rowspan="1" colspan="1">14</td>
+                <td class="text-center" rowspan="1" colspan="1">ECDH X448 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
+</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
+<span id="name-key-agreement-type-block-val"></span><div id="KeyAgreementTypeBlockValuesKEMMode">
+<table class="center" id="table-3">
+            <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-key-agreement-type-block-val" class="selfRef">Key Agreement Type Block values for KEM Mode</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Key Agreement Type Block</th>
+                <th class="text-center" rowspan="1" colspan="1">pk words</th>
+                <th class="text-center" rowspan="1" colspan="1">ct words</th>
+                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"KYB1"</td>
+                <td class="text-center" rowspan="1" colspan="1">200</td>
+                <td class="text-center" rowspan="1" colspan="1">192</td>
+                <td class="text-center" rowspan="1" colspan="1">Kyber512</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"KYB2"</td>
+                <td class="text-center" rowspan="1" colspan="1">296</td>
+                <td class="text-center" rowspan="1" colspan="1">272</td>
+                <td class="text-center" rowspan="1" colspan="1">Kyber768</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"KYB3"</td>
+                <td class="text-center" rowspan="1" colspan="1">392</td>
+                <td class="text-center" rowspan="1" colspan="1">392</td>
+                <td class="text-center" rowspan="1" colspan="1">Kyber1024</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"SIK1"</td>
+                <td class="text-center" rowspan="1" colspan="1">83</td>
+                <td class="text-center" rowspan="1" colspan="1">87</td>
+                <td class="text-center" rowspan="1" colspan="1">Sike434</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"SIK2"</td>
+                <td class="text-center" rowspan="1" colspan="1">116</td>
+                <td class="text-center" rowspan="1" colspan="1">122</td>
+                <td class="text-center" rowspan="1" colspan="1">Sike610</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"SIK3"</td>
+                <td class="text-center" rowspan="1" colspan="1">141</td>
+                <td class="text-center" rowspan="1" colspan="1">149</td>
+                <td class="text-center" rowspan="1" colspan="1">Sike751</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X1K1"</td>
+                <td class="text-center" rowspan="1" colspan="1">208</td>
+                <td class="text-center" rowspan="1" colspan="1">200</td>
+                <td class="text-center" rowspan="1" colspan="1">X25519/Kyber512 Hybrid</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X1S1"</td>
+                <td class="text-center" rowspan="1" colspan="1">91</td>
+                <td class="text-center" rowspan="1" colspan="1">95</td>
+                <td class="text-center" rowspan="1" colspan="1">X25519/Sike434 Hybrid</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X2K2"</td>
+                <td class="text-center" rowspan="1" colspan="1">309</td>
+                <td class="text-center" rowspan="1" colspan="1">285</td>
+                <td class="text-center" rowspan="1" colspan="1">X41417/Kyber768 Hybrid</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X2S2"</td>
+                <td class="text-center" rowspan="1" colspan="1">129</td>
+                <td class="text-center" rowspan="1" colspan="1">135</td>
+                <td class="text-center" rowspan="1" colspan="1">X41417/Sike610 Hybrid</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X3K3"</td>
+                <td class="text-center" rowspan="1" colspan="1">406</td>
+                <td class="text-center" rowspan="1" colspan="1">406</td>
+                <td class="text-center" rowspan="1" colspan="1">X448/Kyber1024 Hybrid</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"X2S3"</td>
+                <td class="text-center" rowspan="1" colspan="1">155</td>
+                <td class="text-center" rowspan="1" colspan="1">159</td>
+                <td class="text-center" rowspan="1" colspan="1">X448/Sike751 Hybrid</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
+<span id="name-key-agreement-type-block-valu"></span><div id="KeyAgreementTypeBlockValuesNoKeyEchange">
+<table class="center" id="table-4">
+            <caption>
+<a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#name-key-agreement-type-block-valu" class="selfRef">Key Agreement Type Block values for non key exchange mode</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Key Agreement Type Block</th>
+                <th class="text-center" rowspan="1" colspan="1">message words</th>
+                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+                <th class="text-center" rowspan="1" colspan="1"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"Prsh"</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-center" rowspan="1" colspan="1">Preshared Non-DH mode</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"Mult"</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-center" rowspan="1" colspan="1">Multistream Non-DH mode</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
 </section>
 </div>
 <div id="sas-type-block">
@@ -2673,9 +2849,9 @@ KEMdecaps( cipherText, secretKey ):
 </div>
 <p id="section-6.1-11">The implicit value ECDHId defined as follow:<a href="#section-6.1-11" class="pilcrow">¶</a></p>
 <span id="name-ecdh-ids"></span><div id="ecdhid-values">
-<table class="center" id="table-2">
+<table class="center" id="table-5">
           <caption>
-<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#table-5" class="selfRef">Table 5</a>:
 <a href="#name-ecdh-ids" class="selfRef">ECDH IDs</a>
           </caption>
 <thead>
