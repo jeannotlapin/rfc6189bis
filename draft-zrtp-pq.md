@@ -616,6 +616,63 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 ### Auth Tag Type Block
 
 ### Key Agreement Type Block {#keyAgreementTypeBlock}
+----------------
+
+|---
+| Key Agreement Type Block | pv words | Meaning |
+|---------------|:-------:|:---------:|:-----------------------------:|
+| "DH3k" |   96  | DH mode with p=3072 bit prime per RFC 3526, Section 4. |
+|---
+| "DH2k" |   64  | DH mode with p=2048 bit prime per RFC 3526, Section 3.|
+|---
+| "EC25" |   8  | Elliptic Curve DH, P-256 per RFC 5114, Section 2.6 |
+|---
+| "EC38" |   12  | Elliptic Curve DH, P-384 per RFC 5114, Section 2.7 |
+|---
+| "X255" | 8 | ECDH X25519 per {{RFC7748}} |
+|---
+| "X414" | 13 | ECDH 41417 per {{Ber14}} |
+|---
+| "X448" | 14 | ECDH X448 per {{RFC7748}} |
+|---
+{: #KeyAgreementTypeBlockValuesDHMode title="Key Agreement Type Block values for DH Mode"}
+
+|---
+| Key Agreement Type Block | pk words | ct words | Meaning |
+|---------------|:-------:|:---------:|:-----------------------------:|
+| "KYB1" |   200  |   192   |  Kyber512 |
+|---
+| "KYB2" |   296  |   272   |  Kyber768 |
+|---
+| "KYB3" |   392  |   392   |  Kyber1024 |
+|---
+| "SIK1" |   83  |   87   |  Sike434 |
+|---
+| "SIK2" |   116  |   122   |  Sike610 |
+|---
+| "SIK3" |   141  |   149   |  Sike751 |
+|---
+| "X1K1" |   208  |   200   |  X25519/Kyber512 Hybrid |
+|---
+| "X1S1" |   91  |   95   |  X25519/Sike434 Hybrid |
+|---
+| "X2K2" |   309  |   285   |  X41417/Kyber768 Hybrid |
+|---
+| "X2S2" |   129  |   135   |  X41417/Sike610 Hybrid |
+|---
+| "X3K3" |   406  |   406   |  X448/Kyber1024 Hybrid |
+|---
+| "X2S3" |   155  |   159   |  X448/Sike751 Hybrid |
+|---
+{: #KeyAgreementTypeBlockValuesKEMMode title="Key Agreement Type Block values for KEM Mode"}
+
+|---
+| Key Agreement Type Block | message words | Meaning |
+|---------------|:-------:|:---------:|:-----------------------------:|
+| "Prsh" |    -  |     -   |  Preshared Non-DH mode |
+|---
+| "Mult" |    -  |     -   |  Multistream Non-DH mode |
+{: #KeyAgreementTypeBlockValuesNoKeyEchange title="Key Agreement Type Block values for non key exchange mode"}
 
 ### SAS Type Block
 
