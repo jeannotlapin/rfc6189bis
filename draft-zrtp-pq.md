@@ -45,6 +45,10 @@ normative:
    RFC9180:
    RFC5869:
    RFC7748:
+   RFC3526:
+   RFC5114:
+   RFC5479:
+   RFC7983:
 
 informative:
    NIST-PQC:
@@ -61,6 +65,16 @@ informative:
       title: "Recommendation for Key Derivation Using Pseudorandom Functions (Revised)"
       target: "https://csrc.nist.gov/publications/detail/sp/800-108/final"
       date: "October 2009"
+
+   NIST-FIPS180-4:
+      title: "Secure Hash Standard (SHS)"
+      target: "https://csrc.nist.gov/publications/detail/fips/180/4/final"
+      date: "August 2015"
+
+   NIST-FIPS202:
+      title: "SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions"
+      target: "https://csrc.nist.gov/publications/detail/fips/202/final"
+      date: "August 2015"
 
    Ber14:
       title: "Curve41417: Karatsuba revisited"
@@ -125,11 +139,11 @@ A \|\| B denotes the concatenation of byte sequences A and B.
 
 ## Key Agreement Modes
 
-After both endpoints exchange Hello and HelloACK messages, the key agreement exchange can begin with the ZRTP Commit message.  ZRTP supports a number of key agreement modes including both key exchange modes (DH or KEM) and non key exchange modes (PreShared or Multistream) as described in the following sections.
+After both endpoints exchange Hello and HelloACK messages, the key agreement exchange can begin with the ZRTP Commit message.  ZRTP supports a number of key agreement modes including DH, KEM, PreShared or Multistream modes as described in the following sections.
 
 The Commit message may be sent immediately after both endpoints have completed the Hello/HelloACK discovery handshake, or it may be deferred until later in the call, after the participants engage in some unencrypted conversation.  The Commit message may be manually activated by a user interface element, such as a GO SECURE button, which becomes enabled after the Hello/HelloACK discovery phase.  This emulates the user experience of a number of secure phones in the Public Switched Telephone Network (PSTN) world.  However, it is expected that most simple ZRTP user agents will omit such buttons and proceed directly to secure mode by sending a Commit message immediately after the Hello/HelloACK handshake.
 
-### Key Exchange modes
+### DH and KEM Modes
 
 Examples ZRTP call flow are shown in {{FigDHCallFlow}} and {{FigKemCallFlow}}.  Note that the order of the Hello/HelloACK exchanges in F1/F2 and F3/F4 may be reversed.  That is, either Alice or Bob might send the first Hello message.  Note that the endpoint that sends the Commit message is considered the initiator of the ZRTP session and drives the key agreement exchange.
 
@@ -229,11 +243,19 @@ The responder generates and encapsulates the shared secret using the initiator p
 ~~~~~~~~~~
 {: #FigKemCallFlow title="Establishment of an SRTP Session using ZRTP - KEM mode"}
 
-### Non key exchange mode
+### Preshared Mode Overview
 
-#### Preshared Mode Overview
+In the Preshared mode, endpoints can skip the DH calculation if they have a shared secret from a previous ZRTP session.  Preshared mode is indicated in the Commit message and results in the same call flow as Multistream mode.  The principal difference between Multistream mode and Preshared mode is that Preshared mode uses a previously cached shared secret, rs1, instead of an active ZRTP Session key as the initial keying material.
 
-#### Multistream Mode Overview
+This mode could be useful for slow processor endpoints so that a DH calculation does not need to be performed every session.  Or, this mode could be used to rapidly re-establish an earlier session that was recently torn down or interrupted without the need to perform another DH calculation.
+
+Preshared mode has forward secrecy properties.  If a phone's cache is captured by an opponent, the cached shared secrets cannot be used to recover earlier encrypted calls, because the shared secrets are replaced with new ones in each new call, as in DH mode.  However, the captured secrets can be used by a passive wiretapper in the media path to decrypt the next call, if the next call is in Preshared mode.  This differs from DH mode, which requires an active MiTM wiretapper to exploit captured secrets in the next call.  However, if the next call is missed by the wiretapper, he cannot wiretap any further calls.  Thus, it preserves most of the self-healing properties ({{SelfHealingKeyContinuityFeatureSec}}) of key continuity enjoyed by DH mode.
+
+### Multistream Mode Overview
+
+Multistream mode is an alternative key agreement method used when two endpoints have an established SRTP media stream between them with an active ZRTP Session key.  ZRTP can derive multiple SRTP keys from a single DH exchange.  For example, an established secure voice call that adds a video stream uses Multistream mode to quickly initiate the video stream without a second DH exchange.
+
+When Multistream mode is indicated in the Commit message, a call flow similar to Figure 1 is used, but no DH calculation is performed by either endpoint and the DHPart1 and DHPart2 messages are omitted.  The Confirm1, Confirm2, and Conf2ACK messages are still sent.  Since the cache is not affected during this mode, multiple Multistream ZRTP exchanges can be performed in parallel between two endpoints.
 
 # Protocol Description
 
@@ -247,9 +269,9 @@ Each Hello message lists the algorithms in the order of preference for that ZRTP
 
 Unfavorable choices will never be made by this method, because each endpoint will omit from their respective lists choices that are too slow or not secure enough to meet their security policy.
 
-#### Key agreement algorithm
+#### Key Agreement Algorithm
 
-##### DH Mode only
+##### DH Mode Only
 
 A method is provided to allow the two parties to mutually and deterministically choose the same DH key size and algorithm before a Commit message is sent.
 
@@ -266,47 +288,46 @@ To decide which DH algorithm is faster, the following ranking, from fastest to s
 
 If both endpoints follow this method, they may each start their DH calculations as soon as they receive the Hello message, and there will be no need for either endpoint to discard their DH calculation if the other endpoint becomes the initiator.
 
-##### KEM Mode only
+##### KEM Mode Only
 
-In KEM mode the optimization used in DH Mode cannot apply: the party ending being responder cannot reuse any computation made during the generation of the public key needed to produce a Commit message. There is then no need to provide a method allowing both sides to select a key exchange algorithm before the Commit message is sent. The initiator simply selects any key agreement from the algorithms in common.
+The initiator simply selects any key agreement from the algorithms in common.
 
-##### DH and KEM mixed in Hello message Key Agreement list
+##### DH and KEM Mixed in Hello Message Key Agreement List
 
 When both KEM and DH algorithms end up in the common ordered algo lists.
 
-* if Alice's and Bob's intersecting list first algorithm is a KEM, the KEM Mode only selection applies.
-* if Alice's and Bob's intersecting list first algorithm is a DH, KEM algos are dropped from the lists and the DH Mode only selection applies.
-* if one is DH and the other is KEM, the DH algorithm is selected.
+* If Alice's and Bob's intersecting list first algorithm is a KEM, the KEM Mode only selection applies.
+* If Alice's and Bob's intersecting list first algorithm is a DH, KEM algos are dropped from the lists and the DH Mode only selection applies.
+* If one is DH and the other is KEM, the DH algorithm is selected.
 
 Example:
 
-* Alice's full list: X25519, Kyber512, X448
-* Bob's full list: Kyber512, X25519
-* Alice's intersecting list: X25519, Kyber512
-* Bob's intersecting list: Kyber512, X25519
-* Alice's first choice is a DH algorithn (X25519), and Bob's first choice is KEM algorithm (Kyber512).
+* Alice's full list: X25519, X25519+Kyber512, X448
+* Bob's full list: X25519+Kyber512, X25519
+* Alice's intersecting list: X25519, X25519+Kyber512
+* Bob's intersecting list: X25519+Kyber512, X25519
+* Alice's first choice is a DH algorithn (X25519), and Bob's first choice is KEM algorithm (X25519+Kyber512).
 * Thus, both parties choose X25519.
 
 Example:
 
-* Alice's full list: X448, X25519, Kyber512, DH3k
-* Bob's full list: DH3k, Kyber512, X25519
-* Alice's intersecting list: X25519, Kyber512, DH3k
-* Bob's intersecting list: DH3k, Kyber512, X25519
-* Alice's first choice is a DH algorithn (X25519), and Bob's first choice is DH algorithm (DH3k): drop Kyber512 from the intersecting lists.
+* Alice's full list: X448, X25519, X25519+Kyber512, DH3k
+* Bob's full list: DH3k, X25519+Kyber512, X25519
+* Alice's intersecting list: X25519, X25519+Kyber512, DH3k
+* Bob's intersecting list: DH3k, X25519+Kyber512, X25519
+* Alice's first choice is a DH algorithn (X25519), and Bob's first choice is DH algorithm (DH3k): drop X25519+Kyber512 from the intersecting lists.
 * Thus, both parties choose X25519 because it is faster than DH3k.
 
 Example:
 
-* Alice's full list: Kyber1024, Kyber512, X448, X25519
-* Bob's full list: Kyber512, Kyber1024, X25519
-* Alice's intersecting list: Kyber1024, Kyber512, X25519
-* Bob's intersecting list: Kyber512, kyber1024, X25519
-* Alice's first choice is a KEM algorithn (Kyber1024), and Bob's first choice is KEM algorithm (Kyber512).
-* The initiator choose Kyber1024 or Kyber512.
+* Alice's full list: X448+Kyber1024, X25519+Kyber512, X448, X25519
+* Bob's full list: X25519+Kyber512, X448+Kyber1024, X25519
+* Alice's intersecting list: X448+Kyber1024, X25519+Kyber512, X25519
+* Bob's intersecting list: X25519+Kyber512, X448+kyber1024, X25519
+* Alice's first choice is a KEM algorithn (X448+Kyber1024), and Bob's first choice is KEM algorithm (X25519+Kyber512).
+* The initiator chooses X448+Kyber1024 because it provides a higher security level
 
-
-#### Other algorithms
+#### Other Algorithms
 
 For the rest of the algorithm choices, it is simply whatever the initiator selects from the algorithms in common. Note that the DH or KEM key size influences the Hash Type and the size of the symmetric cipher key, as explained in {{keyAgreementTypeBlock}}.
 
@@ -320,9 +341,9 @@ For the rest of the algorithm choices, it is simply whatever the initiator selec
 ### Handling a Shared Secret Cache Mismatch
 
 ## Key Agreements
-The next step is the generation of a secret for deriving SRTP keying material.  ZRTP uses two key-exchange modes (DH and KEM) and two non-key-exchange modes (PreShared and Multistream), described in the following subsections.
+The next step is the generation of a secret for deriving SRTP keying material.  ZRTP uses for modes: DH, KEM, PreShared and Multistream, described in the following subsections.
 
-### Key Exchange modes
+### DH and KEM Modes {#DHandKEMModesSec}
 
 The purpose of the key exchange is for the two ZRTP endpoints to generate a new shared secret, s0.  In addition, the endpoints discover if they have any cached or previously stored shared secrets in common, and they use them as part of the calculation of the session keys.
 Because the key exchange affects the state of the retained shared secret cache, only one in-process ZRTP key exchange may occur at a time between two ZRTP endpoints.  Otherwise, race conditions and cache integrity problems will result.  When multiple media streams are established in parallel between the same pair of ZRTP endpoints (determined by the ZIDs in the Hello messages), only one can be processed.  Once that exchange completes with Confirm2 and Conf2ACK messages, another ZRTP key exchange can begin.  This constraint does not apply when Multistream mode key agreement is used since the cached shared secrets are not affected.
@@ -475,7 +496,7 @@ The initiator then sends a KEMPart2 message containing the initiator's random no
 
 KEMResult size is defined by the algorithm used. See {{keyAgreementTypeBlock}} for details.
 
-#### Shared Secret Calculation for Key Exchange Mode {#SharedSecretCalculationSec}
+#### Shared Secret Calculation for DH and KEM Mode {#SharedSecretCalculationSec}
 
 A hash of the received and sent ZRTP messages in the current ZRTP exchange in the following order is calculated by both parties:
 
@@ -513,13 +534,21 @@ The ZRTP key derivation function (KDF) {{TheZrtpKeyDerivationFunctionSec}} requi
 KDF_Context = (ZIDi || ZIDr || total_hash)
 ~~~
 
-At this point in key exchange mode, the two endpoints proceed to the key derivations of ZRTPSess and the rest of the keys in {{DerivingZRTPSessKeyAndSAS}}, now that there is a defined s0.
+At this point in DH or KEM mode, the two endpoints proceed to the key derivations of ZRTPSess and the rest of the keys in {{DerivingZRTPSessKeyAndSAS}}, now that there is a defined s0.
 
-### Non Key Exchange modes
+### PresharedMode
 
-#### PresharedMode
+The Preshared key agreement mode can be used to generate SRTP keys and salts without a DH or KEM calculation, instead relying on a shared secret from previous DH or KEM calculations between the endpoints.
 
-#### Multistream Mode
+This key agreement mode is useful to rapidly re-establish a secure session between two parties who have recently started and ended a secure session that has already performed a DH or KEM key agreement, without performing another lengthy calculation, which may be desirable on slow processors in resource-limited environments.  Preshared mode MUST NOT be used for adding additional media streams to an existing call.  Multistream mode MUST be used for this purpose.
+
+In the most severe resource-limited environments, Preshared mode may be useful with processors that cannot perform a DH or KEM calculation in an ergonomically acceptable time limit.  Shared key material may be manually provisioned between two such endpoints in advance and still allow a limited subset of functionality.  Such a "better than nothing" implementation would have to be regarded as non-compliant with the ZRTP specification, but it could interoperate in Preshared (and if applicable, Multistream) mode with a compliant ZRTP endpoint.
+
+Because Preshared mode affects the state of the retained shared secret cache, only one in-process ZRTP Preshared exchange may occur at a time between two ZRTP endpoints.  This rule is explained in more detail in {{DHandKEMModesSec}}, and applies for the same reasons as in DH mode.
+
+Preshared mode is only included in this specification to meet the R-REUSE requirement in the Media Security Requirements {{RFC5479}} document.  A series of preshared-keyed calls between two ZRTP endpoints should use a DH or KEM key exchange periodically.  Preshared mode is only used if a cached shared secret has been established in an earlier session by a DH or KEM exchange, as discussed in {{ZIDandCacheOperationSec}}.
+
+### Multistream Mode
 
 ## Key Derivation
 
@@ -535,19 +564,19 @@ At this point in key exchange mode, the two endpoints proceed to the key derivat
 
 ## Random Number Generator {#RandomNumbersSec}
 
-## ZID and Cache Operation
+## ZID and Cache Operation {#ZIDandCacheOperationSec}
 
 # ZRTP Packets
 
 ## ZRTP Packet Formats
 
-All ZRTP packets messages use the message format defined in {{FigNonFragmentedMessage}} and {{FigFragmentedMessage}}.  All word lengths referenced in this specification are 32 bits, or 4 octets.  All integer fields are carried in network byte order, that is, most-significant byte (octet) first, commonly known as big- endian.
+All ZRTP packets messages use the message format defined in {{FigNonFragmentedMessage}} and {{FigFragmentedMessage}}.  All word lengths referenced in this specification are 32 bits, or 4 octets.  All integer fields are carried in network byte order, that is, most-significant byte (octet) first, commonly known as big-endian.
 
 ~~~~~~~~~~
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 1|Not Used (set to zero) |         Sequence Number       |
+   |0 0 0 1 0 0 0 0|  Not Used: 0  |         Sequence Number       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                 Magic Cookie 'ZRTP' (0x5a525450)              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -567,7 +596,7 @@ All ZRTP packets messages use the message format defined in {{FigNonFragmentedMe
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 1 1|Not Used (set to zero) |         Sequence Number       |
+   |0 0 0 1 0 0 0 1|  Not Used: 0  |         Sequence Number       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                 Magic Cookie 'ZRTP' (0x5a525450)              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -587,7 +616,8 @@ All ZRTP packets messages use the message format defined in {{FigNonFragmentedMe
 ~~~~~~~~~~
 {: #FigFragmentedMessage title="Fragmented Message Packet Format"}
 
-This format is clearly identifiable as non-RTP due to the first two bits being zero, which looks like RTP version 0, which is not a valid RTP version number.  It is clearly distinguishable from STUN since the Magic Cookies are different. The 12 unused bits are set to zero and MUST be ignored when received.  In early versions of this spec, ZRTP messages were encapsulated in RTP header extensions, which made ZRTP an eponymous variant of RTP.  In later versions, the packet format changed to make it syntactically distinguishable from RTP. A fragmented message is identified by the third bit being set to 1 instead of 0.
+{{RFC7983}} section 7 reserves for the ZRTP packet format the values 16 to 19 on the first byte to clearly distinguish ZRTP packets from STUN, DTLS, TURN or RTP/RTCP packets.
+Values 16 and 17 are used to distinguish fragmented and non-fragmented messages. The 8 unused bits are set to zero and MUST be ignored when received. Previous version of ZRTP non supporting the message fragmentation will simply discard the fragmented message as invalid.
 
 * The Sequence Number is a count that is incremented for each ZRTP packet sent.  The count is initialized to a random value.  This is useful in estimating ZRTP packet loss and also detecting when ZRTP packets arrive out of sequence.
 
@@ -596,12 +626,16 @@ This format is clearly identifiable as non-RTP due to the first two bits being z
 * Source Identifier is the SSRC number of the RTP stream to which this ZRTP packet relates.  For cases of forking or forwarding, RTP, and hence ZRTP, may arrive at the same port from several different sources -- each of these sources will have a different SSRC and may initiate an independent ZRTP protocol session.  SSRC collisions would be disruptive to ZRTP.  SSRC collision handling procedures are described in {{DiscoverySec}}.
 
 When the packet carries a message fragment, the header also includes:
+
 * message Id: a unique Id for this message, is attached to the message and is not incremented at each retransmission like the sequence number. It is initialised to a random value and is incremented for each new message generated.
+
 * message total length: size, in 32-bit words of the total message.
+
 * offset: offset of this fragment, in 32-bit words.
+
 * fragment length: size of this fragment, in 32-bit words.
 
-Messages susceptible to be fragmented are Commit and KEMPart1. There is then no reason to store fragments for several message. A simple buffer storing the message currently in reception is enough, if a fragment with message Id superior to the current one is received, the current buffer content must be discarded and the new message collection started. Fragments may overlap if the MTU is modified during the ZRTP handshake.
+The messages susceptibles to be fragmented are Commit, KEMPart1, Confirm1 and Confirm2 messages. There is then no reason to store fragments for several messages. A simple buffer storing the message currently in reception is enough, if a fragment with message Id superior to the current one is received, the current buffer content must be discarded and the new message collection started. Fragments may overlap if the MTU is modified during the ZRTP handshake.
 
 The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable length.
 
@@ -610,6 +644,24 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 ### Message Type Block
 
 ### Hash Type Block
+----------------
+
+|---
+| Hash Type Block | Meaning |
+|-----------------|:-------:|
+| "S256" | SHA-256 Hash defined in {{NIST-FIPS180-4}} |
+|---
+| "S384" | SHA-384 Hash defined in {{NIST-FIPS180-4}} |
+|---
+| "S512" | SHA-512 Hash defined in {{NIST-FIPS180-4}} |
+|---
+| "N256" | SHA3-256 Hash defined in {{NIST-FIPS202}} |
+|---
+| "N384" | SHA3-384 Hash defined in {{NIST-FIPS202}} |
+|---
+| "N512" | SHA3-512 Hash defined in {{NIST-FIPS202}} |
+|---
+{: #HashTypeBlockValues title="Hash Type Block values"}
 
 ### Cipher Type Block
 
@@ -619,52 +671,52 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 ----------------
 
 |---
-| Key Agreement Type Block | pv words | Meaning |
-|---------------|:-------:|:---------:|:-----------------------------:|
-| "DH3k" |   96  | DH mode with p=3072 bit prime per RFC 3526, Section 4. |
+| Key Agreement Type Block | Short Type Block | Meaning |
+|---------------|:-----------------------------:|
+| "DH3k" | - | DH mode with p=3072 bit prime per {{RFC3526}}, Section 4. |
 |---
-| "DH2k" |   64  | DH mode with p=2048 bit prime per RFC 3526, Section 3.|
+| "DH2k" | - | DH mode with p=2048 bit prime per {{RFC3526}}, Section 3.|
 |---
-| "EC25" |   8  | Elliptic Curve DH, P-256 per RFC 5114, Section 2.6 |
+| "EC25" | - | Elliptic Curve DH, P-256 per {{RFC5114}}, Section 2.6 |
 |---
-| "EC38" |   12  | Elliptic Curve DH, P-384 per RFC 5114, Section 2.7 |
+| "EC38" | - | Elliptic Curve DH, P-384 per {{RFC5114}}, Section 2.7 |
 |---
-| "X255" | 8 | ECDH X25519 per {{RFC7748}} |
+| "X255" | "X1" | ECDH X25519 per {{RFC7748}} |
 |---
-| "X414" | 13 | ECDH 41417 per {{Ber14}} |
+| "X414" | "X2" | ECDH 41417 per {{Ber14}} |
 |---
-| "X448" | 14 | ECDH X448 per {{RFC7748}} |
+| "X448" | "X3" | ECDH X448 per {{RFC7748}} |
 |---
 {: #KeyAgreementTypeBlockValuesDHMode title="Key Agreement Type Block values for DH Mode"}
 
 |---
-| Key Agreement Type Block | pk words | ct words | Meaning |
-|---------------|:-------:|:---------:|:-----------------------------:|
-| "KYB1" |   200  |   192   |  Kyber512 |
+| Key Agreement Type Block | Short Type Block | Meaning |
+|---------------|:-----------------------------:|
+| "KYB1" | "K1" | Kyber512 |
 |---
-| "KYB2" |   296  |   272   |  Kyber768 |
+| "KYB2" | "K2" | Kyber768 |
 |---
-| "KYB3" |   392  |   392   |  Kyber1024 |
+| "KYB3" | "K3" | Kyber1024 |
 |---
-| "SIK1" |   83  |   87   |  Sike434 |
+| "SIK1" | "S1" | Sike434 |
 |---
-| "SIK2" |   116  |   122   |  Sike610 |
+| "SIK2" | "S2" | Sike610 |
 |---
-| "SIK3" |   141  |   149   |  Sike751 |
+| "SIK3" | "S3" | Sike751 |
 |---
-| "X1K1" |   208  |   200   |  X25519/Kyber512 Hybrid |
+| "SAB1" | "A1" | LightSaber |
 |---
-| "X1S1" |   91  |   95   |  X25519/Sike434 Hybrid |
+| "SAB2" | "A2" | Saber |
 |---
-| "X2K2" |   309  |   285   |  X41417/Kyber768 Hybrid |
+| "SAB3" | "A3" | FireSaber |
 |---
-| "X2S2" |   129  |   135   |  X41417/Sike610 Hybrid |
+| "NTR1" | "N1" | NTRU-HPS 2048-509 |
 |---
-| "X3K3" |   406  |   406   |  X448/Kyber1024 Hybrid |
+| "NTR2" | "N2" | NTRU-HPS 2048-677 |
 |---
-| "X2S3" |   155  |   159   |  X448/Sike751 Hybrid |
+| "NTR3" | "N3" | NTRU-HPS 4096-821 |
 |---
-{: #KeyAgreementTypeBlockValuesKEMMode title="Key Agreement Type Block values for KEM Mode"}
+{: #PostQuantumKeyAgreementTypeBlockValues title="Post Quantum Key Agreement Type Block values"}
 
 |---
 | Key Agreement Type Block | message words | Meaning |
@@ -672,7 +724,18 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 | "Prsh" |    -  |     -   |  Preshared Non-DH mode |
 |---
 | "Mult" |    -  |     -   |  Multistream Non-DH mode |
-{: #KeyAgreementTypeBlockValuesNoKeyEchange title="Key Agreement Type Block values for non key exchange mode"}
+|---
+{: #KeyAgreementTypeBlockValuesPrshMult title="Key Agreement Type Block values for Preshared and Multistream mode"}
+
+#### Hybrid KEM designation
+
+The Hybrid KEM, constructed as decribed in {{HybridKEMSec}}, combines an ECDH algorithm(X25519, X41417 or X448) used in KEM form as described in {{ECHDBasedKEMSec}} and one of the PQ KEM from {{KeyAgreementTypeBlockValuesDHMode}}. The 4 characters char describing an hybrid KEM key agreement type block is built using the "Short Type Block" from {{KeyAgreementTypeBlockValuesDHMode}} and {{PostQuantumKeyAgreementTypeBlockValues}}. The ECDH-based KEM is always mentionned first. Examples:
+
+* X25519/Kyber512: "X1K1"
+
+* X448/Saber: "X3A2"
+
+* X41417/Sike751: "X2S3"
 
 ### SAS Type Block
 
@@ -818,6 +881,44 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 
 ## DHPart1 Message
 
+~~~~~~~~~~
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|   length=depends on KA Type   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |              Message Type Block="DHPart1 " (2 words)          |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                   Hash image H1 (8 words)                     |
+   |                             . . .                             |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        rs1IDr (2 words)                       |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        rs2IDr (2 words)                       |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                     auxsecretIDr (2 words)                    |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                     pbxsecretIDr (2 words)                    |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                  pvr (length depends on KA Type)              |
+   |                               . . .                           |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         MAC (2 words)                         |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+~~~~~~~~~~
+{: #FigDHPart1Message title="DHPart1 Message Format"}
+
 ## DHPart2 Message
 
 
@@ -906,7 +1007,7 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|   length=depends on KA Type   |
+   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|        length=25 words        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |              Message Type Block="KEMPart2" (2 words)          |
    |                                                               |
@@ -961,15 +1062,15 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 
 # Hybrid KEM {#HybridKEMSec}
 
-PQC KEM algorithm being quite recent, it is recommended to combine them with well known, classical key exchange algorithms to obtain an hybrid KEM. We defined a method to hybrid KEM providing an interface identical to a "simple" KEM:
+PQC KEM algorithm being quite recent, it is recommended to combine them with well-known, classical key exchange algorithms to obtain an hybrid KEM. We defined a method to hybridize key exchange schemes by providing an interface identical to a "simple" KEM:
 
-* Generates a fresh set of key pair:
+* Generate a fresh set of key pair:
 
 ~~~
 publicKey, secretKey = KEMgenKey()
 ~~~
 
-* Generates a sharedSecret and encapsulates it in cipherText using the given publicKey:
+* Generate a sharedSecret and encapsulates it in cipherText using the given publicKey:
 
 ~~~
 sharedSecret, cipherText = KEMencaps( publicKey )
@@ -1010,10 +1111,10 @@ sharedSecret = ECDHcomputeShared( selfSecret, peerPublic )
 publicKey = ECDHderivePublicKey( secretKey )
 ~~~
 
-The ECDH-based KEM is produced using HKDF as defined in {{RFC5869}} based on the negotiated hash algorithm:
+The ECDH-based KEM relies upon HKDF as defined in {{RFC5869}} based on the negotiated hash algorithm:
 
 ~~~
-kfd ( ikm, context , outputSize ):
+kfd ( ikm, context, outputSize ):
    ikm = "ZRTP" || ECDHId || "aea_prk" || ikm
    salt = ""
    info =  outputSize || "ZRTP" || ECDHId
@@ -1043,7 +1144,7 @@ The implicit value ECDHId defined as follow:
 | 0x0022 | X41417    | {{Ber14}} |
 {: #ecdhid-values title="ECDH IDs"}
 
-## KEM combiner {#KEMcombiner}
+## KEM Combiner {#KEMcombiner}
 
 Section 3.3 in {{Bin18}} describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two KEMs using HMAC-SHA256 as dual Pseudo Random Function and extractor.
 
@@ -1053,8 +1154,8 @@ The two combined KEMs are noted KEM\_1 and KEM\_2. PublicKey, secretKey and ciph
 
 ~~~
 publicKey, secretKey = KEMgenKey():
-   pk1, sk1 = KEM_1genKey()
-   pk2, sk2 = KEM_2genKey()
+   pk1, sk1 = KEM_1.genKey()
+   pk2, sk2 = KEM_2.genKey()
    return pk1 || pk2, sk1 || sk2
 ~~~
 
@@ -1064,8 +1165,8 @@ publicKey, secretKey = KEMgenKey():
 sharedSecret, cipherText = KEMencaps( publicKey ):
    pk1, pk2 = split( publicKey )
 
-   ss1, ct1 = KEM_1encaps( pk1 )
-   ss2, ct2 = KEM_2encaps( pk2 )
+   ss1, ct1 = KEM_1.encaps( pk1 )
+   ss2, ct2 = KEM_2.encaps( pk2 )
    cipherText = ct1 || ct2
 
    ke = HMAC( "", ss1 )
@@ -1083,8 +1184,8 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
    sk1, sk2 = split( secretKey )
    ct1, ct2 = split( cipherText )
 
-   ss1 = KEM_1decaps( ct1, sk1 )
-   ss2 = KEM_2decaps( ct2, sk2 )
+   ss1 = KEM_1.decaps( ct1, sk1 )
+   ss2 = KEM_2.decaps( ct2, sk2 )
 
    ke = HMAC( "", ss1 )
    kd = HMAC( ke, ss2 )
@@ -1093,7 +1194,7 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
    return sharedSecret
 ~~~
 
-The HMAC function is based on the negociated hash algorithm
+The HMAC function is based on the negotiated hash algorithm.
 
 # Retransmissions
 
@@ -1126,7 +1227,7 @@ The HMAC function is based on the negociated hash algorithm
 
 # Security Considerations
 
-## Self-Healing Key Continuity Feature
+## Self-Healing Key Continuity Feature {#SelfHealingKeyContinuityFeatureSec}
 
 # Acknowledgements
 
