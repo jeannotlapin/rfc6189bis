@@ -11,11 +11,11 @@
 <meta content="
        TODO 
     " name="description">
-<meta content="xml2rfc 3.12.5" name="generator">
+<meta content="xml2rfc 3.12.7" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-zrtp-pq-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.5
+  xml2rfc 3.12.7
     Python 3.9.7
     appdirs 1.4.4
     ConfigArgParse 1.3
@@ -1019,7 +1019,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Zimmermann, et al.</td>
-<td class="center">Expires 9 November 2022</td>
+<td class="center">Expires 19 November 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1032,12 +1032,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-zrtp-pq-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-05-08" class="published">8 May 2022</time>
+<time datetime="2022-05-18" class="published">18 May 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-11-09">9 November 2022</time></dd>
+<dd class="expires"><time datetime="2022-11-19">19 November 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1087,7 +1087,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1126,10 +1126,13 @@ svg [stroke="fill"], svg [fill^="#fff"] {
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-key-agreement-modes" class="xref">Key Agreement Modes</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
-                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="xref">3.1.1</a>.  <a href="#name-key-exchange-modes" class="xref">Key Exchange modes</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="xref">3.1.1</a>.  <a href="#name-dh-and-kem-modes" class="xref">DH and KEM Modes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
-                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="xref">3.1.2</a>.  <a href="#name-non-key-exchange-mode" class="xref">Non key exchange mode</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="xref">3.1.2</a>.  <a href="#name-preshared-mode-overview" class="xref">Preshared Mode Overview</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="xref">3.1.3</a>.  <a href="#name-multistream-mode-overview" class="xref">Multistream Mode Overview</a></p>
 </li>
                 </ul>
 </li>
@@ -1167,10 +1170,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
                 <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-key-agreements" class="xref">Key Agreements</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
-                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-key-exchange-modes-2" class="xref">Key Exchange modes</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.2">
-                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-non-key-exchange-modes" class="xref">Non Key Exchange modes</a></p>
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-dh-and-kem-modes-2" class="xref">DH and KEM Modes</a></p>
 </li>
                 </ul>
 </li>
@@ -1294,7 +1294,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-ecdh-based-kem" class="xref">ECDH-based KEM</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-kem-combiner" class="xref">KEM combiner</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-kem-combiner" class="xref">KEM Combiner</a></p>
 </li>
             </ul>
 </li>
@@ -1409,12 +1409,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
         <h3 id="name-key-agreement-modes">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-key-agreement-modes" class="section-name selfRef">Key Agreement Modes</a>
         </h3>
-<p id="section-3.1-1">After both endpoints exchange Hello and HelloACK messages, the key agreement exchange can begin with the ZRTP Commit message.  ZRTP supports a number of key agreement modes including both key exchange modes (DH or KEM) and non key exchange modes (PreShared or Multistream) as described in the following sections.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">After both endpoints exchange Hello and HelloACK messages, the key agreement exchange can begin with the ZRTP Commit message.  ZRTP supports a number of key agreement modes including DH, KEM, PreShared or Multistream modes as described in the following sections.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">The Commit message may be sent immediately after both endpoints have completed the Hello/HelloACK discovery handshake, or it may be deferred until later in the call, after the participants engage in some unencrypted conversation.  The Commit message may be manually activated by a user interface element, such as a GO SECURE button, which becomes enabled after the Hello/HelloACK discovery phase.  This emulates the user experience of a number of secure phones in the Public Switched Telephone Network (PSTN) world.  However, it is expected that most simple ZRTP user agents will omit such buttons and proceed directly to secure mode by sending a Commit message immediately after the Hello/HelloACK handshake.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<div id="key-exchange-modes">
+<div id="dh-and-kem-modes">
 <section id="section-3.1.1">
-          <h4 id="name-key-exchange-modes">
-<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-key-exchange-modes" class="section-name selfRef">Key Exchange modes</a>
+          <h4 id="name-dh-and-kem-modes">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-dh-and-kem-modes" class="section-name selfRef">DH and KEM Modes</a>
           </h4>
 <p id="section-3.1.1-1">Examples ZRTP call flow are shown in <a href="#FigDHCallFlow" class="xref">Figure 1</a> and <a href="#FigKemCallFlow" class="xref">Figure 2</a>.  Note that the order of the Hello/HelloACK exchanges in F1/F2 and F3/F4 may be reversed.  That is, either Alice or Bob might send the first Hello message.  Note that the endpoint that sends the Commit message is considered the initiator of the ZRTP session and drives the key agreement exchange.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-2">ZRTP authentication uses a Short Authentication String (SAS), which is ideally displayed for the human user.  Alternatively, the SAS can be authenticated by exchanging an optional digital signature (sig) over the SAS in the Confirm1 or Confirm2 messages (described in <a href="#signingSASsec" class="xref">Section 8.2</a>).<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
@@ -1528,25 +1528,23 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </div>
 </section>
 </div>
-<div id="non-key-exchange-mode">
-<section id="section-3.1.2">
-          <h4 id="name-non-key-exchange-mode">
-<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-non-key-exchange-mode" class="section-name selfRef">Non key exchange mode</a>
-          </h4>
 <div id="preshared-mode-overview">
-<section id="section-3.1.2.1">
-            <h5 id="name-preshared-mode-overview">
-<a href="#section-3.1.2.1" class="section-number selfRef">3.1.2.1. </a><a href="#name-preshared-mode-overview" class="section-name selfRef">Preshared Mode Overview</a>
-          </h5>
+<section id="section-3.1.2">
+          <h4 id="name-preshared-mode-overview">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-preshared-mode-overview" class="section-name selfRef">Preshared Mode Overview</a>
+          </h4>
+<p id="section-3.1.2-1">In the Preshared mode, endpoints can skip the DH calculation if they have a shared secret from a previous ZRTP session.  Preshared mode is indicated in the Commit message and results in the same call flow as Multistream mode.  The principal difference between Multistream mode and Preshared mode is that Preshared mode uses a previously cached shared secret, rs1, instead of an active ZRTP Session key as the initial keying material.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-2">This mode could be useful for slow processor endpoints so that a DH calculation does not need to be performed every session.  Or, this mode could be used to rapidly re-establish an earlier session that was recently torn down or interrupted without the need to perform another DH calculation.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-3">Preshared mode has forward secrecy properties.  If a phone's cache is captured by an opponent, the cached shared secrets cannot be used to recover earlier encrypted calls, because the shared secrets are replaced with new ones in each new call, as in DH mode.  However, the captured secrets can be used by a passive wiretapper in the media path to decrypt the next call, if the next call is in Preshared mode.  This differs from DH mode, which requires an active MiTM wiretapper to exploit captured secrets in the next call.  However, if the next call is missed by the wiretapper, he cannot wiretap any further calls.  Thus, it preserves most of the self-healing properties (<a href="#SelfHealingKeyContinuityFeatureSec" class="xref">Section 16.1</a>) of key continuity enjoyed by DH mode.<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multistream-mode-overview">
-<section id="section-3.1.2.2">
-            <h5 id="name-multistream-mode-overview">
-<a href="#section-3.1.2.2" class="section-number selfRef">3.1.2.2. </a><a href="#name-multistream-mode-overview" class="section-name selfRef">Multistream Mode Overview</a>
-          </h5>
-</section>
-</div>
+<section id="section-3.1.3">
+          <h4 id="name-multistream-mode-overview">
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-multistream-mode-overview" class="section-name selfRef">Multistream Mode Overview</a>
+          </h4>
+<p id="section-3.1.3-1">Multistream mode is an alternative key agreement method used when two endpoints have an established SRTP media stream between them with an active ZRTP Session key.  ZRTP can derive multiple SRTP keys from a single DH exchange.  For example, an established secure voice call that adds a video stream uses Multistream mode to quickly initiate the video stream without a second DH exchange.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">When Multistream mode is indicated in the Commit message, a call flow similar to Figure 1 is used, but no DH calculation is performed by either endpoint and the DHPart1 and DHPart2 messages are omitted.  The Confirm1, Confirm2, and Conf2ACK messages are still sent.  Since the cache is not affected during this mode, multiple Multistream ZRTP exchanges can be performed in parallel between two endpoints.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1580,12 +1578,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <div id="key-agreement-algorithm">
 <section id="section-4.1.2.1">
             <h5 id="name-key-agreement-algorithm">
-<a href="#section-4.1.2.1" class="section-number selfRef">4.1.2.1. </a><a href="#name-key-agreement-algorithm" class="section-name selfRef">Key agreement algorithm</a>
+<a href="#section-4.1.2.1" class="section-number selfRef">4.1.2.1. </a><a href="#name-key-agreement-algorithm" class="section-name selfRef">Key Agreement Algorithm</a>
             </h5>
 <div id="dh-mode-only">
 <section id="section-4.1.2.1.1">
               <h6 id="name-dh-mode-only">
-<a href="#section-4.1.2.1.1" class="section-number selfRef">4.1.2.1.1. </a><a href="#name-dh-mode-only" class="section-name selfRef">DH Mode only</a>
+<a href="#section-4.1.2.1.1" class="section-number selfRef">4.1.2.1.1. </a><a href="#name-dh-mode-only" class="section-name selfRef">DH Mode Only</a>
               </h6>
 <p id="section-4.1.2.1.1-1">A method is provided to allow the two parties to mutually and deterministically choose the same DH key size and algorithm before a Commit message is sent.<a href="#section-4.1.2.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1.2.1.1-2">After removing non intersecting algorithms from the Hello message lists, each endpoint compares the first item on their own list with the first item on the other endpoint's list and SHOULD choose the faster of the two algorithms.  For example:<a href="#section-4.1.2.1.1-2" class="pilcrow">¶</a></p>
@@ -1610,68 +1608,68 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <div id="kem-mode-only">
 <section id="section-4.1.2.1.2">
               <h6 id="name-kem-mode-only">
-<a href="#section-4.1.2.1.2" class="section-number selfRef">4.1.2.1.2. </a><a href="#name-kem-mode-only" class="section-name selfRef">KEM Mode only</a>
+<a href="#section-4.1.2.1.2" class="section-number selfRef">4.1.2.1.2. </a><a href="#name-kem-mode-only" class="section-name selfRef">KEM Mode Only</a>
               </h6>
-<p id="section-4.1.2.1.2-1">In KEM mode the optimization used in DH Mode cannot apply: the party ending being responder cannot reuse any computation made during the generation of the public key needed to produce a Commit message. There is then no need to provide a method allowing both sides to select a key exchange algorithm before the Commit message is sent. The initiator simply selects any key agreement from the algorithms in common.<a href="#section-4.1.2.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2.1.2-1">The initiator simply selects any key agreement from the algorithms in common.<a href="#section-4.1.2.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dh-and-kem-mixed-in-hello-message-key-agreement-list">
 <section id="section-4.1.2.1.3">
               <h6 id="name-dh-and-kem-mixed-in-hello-m">
-<a href="#section-4.1.2.1.3" class="section-number selfRef">4.1.2.1.3. </a><a href="#name-dh-and-kem-mixed-in-hello-m" class="section-name selfRef">DH and KEM mixed in Hello message Key Agreement list</a>
+<a href="#section-4.1.2.1.3" class="section-number selfRef">4.1.2.1.3. </a><a href="#name-dh-and-kem-mixed-in-hello-m" class="section-name selfRef">DH and KEM Mixed in Hello Message Key Agreement List</a>
               </h6>
 <p id="section-4.1.2.1.3-1">When both KEM and DH algorithms end up in the common ordered algo lists.<a href="#section-4.1.2.1.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1.2.1.3-2.1">if Alice's and Bob's intersecting list first algorithm is a KEM, the KEM Mode only selection applies.<a href="#section-4.1.2.1.3-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-4.1.2.1.3-2.1">If Alice's and Bob's intersecting list first algorithm is a KEM, the KEM Mode only selection applies.<a href="#section-4.1.2.1.3-2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-2.2">if Alice's and Bob's intersecting list first algorithm is a DH, KEM algos are dropped from the lists and the DH Mode only selection applies.<a href="#section-4.1.2.1.3-2.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-2.2">If Alice's and Bob's intersecting list first algorithm is a DH, KEM algos are dropped from the lists and the DH Mode only selection applies.<a href="#section-4.1.2.1.3-2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-2.3">if one is DH and the other is KEM, the DH algorithm is selected.<a href="#section-4.1.2.1.3-2.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-2.3">If one is DH and the other is KEM, the DH algorithm is selected.<a href="#section-4.1.2.1.3-2.3" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-4.1.2.1.3-3">Example:<a href="#section-4.1.2.1.3-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1.2.1.3-4.1">Alice's full list: X25519, Kyber512, X448<a href="#section-4.1.2.1.3-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-4.1.2.1.3-4.1">Alice's full list: X25519, X25519+Kyber512, X448<a href="#section-4.1.2.1.3-4.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-4.2">Bob's full list: Kyber512, X25519<a href="#section-4.1.2.1.3-4.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-4.2">Bob's full list: X25519+Kyber512, X25519<a href="#section-4.1.2.1.3-4.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-4.3">Alice's intersecting list: X25519, Kyber512<a href="#section-4.1.2.1.3-4.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-4.3">Alice's intersecting list: X25519, X25519+Kyber512<a href="#section-4.1.2.1.3-4.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-4.4">Bob's intersecting list: Kyber512, X25519<a href="#section-4.1.2.1.3-4.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-4.4">Bob's intersecting list: X25519+Kyber512, X25519<a href="#section-4.1.2.1.3-4.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-4.5">Alice's first choice is a DH algorithn (X25519), and Bob's first choice is KEM algorithm (Kyber512).<a href="#section-4.1.2.1.3-4.5" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-4.5">Alice's first choice is a DH algorithn (X25519), and Bob's first choice is KEM algorithm (X25519+Kyber512).<a href="#section-4.1.2.1.3-4.5" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-4.1.2.1.3-4.6">Thus, both parties choose X25519.<a href="#section-4.1.2.1.3-4.6" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-4.1.2.1.3-5">Example:<a href="#section-4.1.2.1.3-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1.2.1.3-6.1">Alice's full list: X448, X25519, Kyber512, DH3k<a href="#section-4.1.2.1.3-6.1" class="pilcrow">¶</a>
+<li class="normal" id="section-4.1.2.1.3-6.1">Alice's full list: X448, X25519, X25519+Kyber512, DH3k<a href="#section-4.1.2.1.3-6.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-6.2">Bob's full list: DH3k, Kyber512, X25519<a href="#section-4.1.2.1.3-6.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-6.2">Bob's full list: DH3k, X25519+Kyber512, X25519<a href="#section-4.1.2.1.3-6.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-6.3">Alice's intersecting list: X25519, Kyber512, DH3k<a href="#section-4.1.2.1.3-6.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-6.3">Alice's intersecting list: X25519, X25519+Kyber512, DH3k<a href="#section-4.1.2.1.3-6.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-6.4">Bob's intersecting list: DH3k, Kyber512, X25519<a href="#section-4.1.2.1.3-6.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-6.4">Bob's intersecting list: DH3k, X25519+Kyber512, X25519<a href="#section-4.1.2.1.3-6.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-6.5">Alice's first choice is a DH algorithn (X25519), and Bob's first choice is DH algorithm (DH3k): drop Kyber512 from the intersecting lists.<a href="#section-4.1.2.1.3-6.5" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-6.5">Alice's first choice is a DH algorithn (X25519), and Bob's first choice is DH algorithm (DH3k): drop X25519+Kyber512 from the intersecting lists.<a href="#section-4.1.2.1.3-6.5" class="pilcrow">¶</a>
 </li>
                 <li class="normal" id="section-4.1.2.1.3-6.6">Thus, both parties choose X25519 because it is faster than DH3k.<a href="#section-4.1.2.1.3-6.6" class="pilcrow">¶</a>
 </li>
               </ul>
 <p id="section-4.1.2.1.3-7">Example:<a href="#section-4.1.2.1.3-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1.2.1.3-8.1">Alice's full list: Kyber1024, Kyber512, X448, X25519<a href="#section-4.1.2.1.3-8.1" class="pilcrow">¶</a>
+<li class="normal" id="section-4.1.2.1.3-8.1">Alice's full list: X448+Kyber1024, X25519+Kyber512, X448, X25519<a href="#section-4.1.2.1.3-8.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-8.2">Bob's full list: Kyber512, Kyber1024, X25519<a href="#section-4.1.2.1.3-8.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-8.2">Bob's full list: X25519+Kyber512, X448+Kyber1024, X25519<a href="#section-4.1.2.1.3-8.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-8.3">Alice's intersecting list: Kyber1024, Kyber512, X25519<a href="#section-4.1.2.1.3-8.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-8.3">Alice's intersecting list: X448+Kyber1024, X25519+Kyber512, X25519<a href="#section-4.1.2.1.3-8.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-8.4">Bob's intersecting list: Kyber512, kyber1024, X25519<a href="#section-4.1.2.1.3-8.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-8.4">Bob's intersecting list: X25519+Kyber512, X448+kyber1024, X25519<a href="#section-4.1.2.1.3-8.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-8.5">Alice's first choice is a KEM algorithn (Kyber1024), and Bob's first choice is KEM algorithm (Kyber512).<a href="#section-4.1.2.1.3-8.5" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-8.5">Alice's first choice is a KEM algorithn (X448+Kyber1024), and Bob's first choice is KEM algorithm (X25519+Kyber512).<a href="#section-4.1.2.1.3-8.5" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.1.2.1.3-8.6">The initiator choose Kyber1024 or Kyber512.<a href="#section-4.1.2.1.3-8.6" class="pilcrow">¶</a>
+                <li class="normal" id="section-4.1.2.1.3-8.6">The initiator chooses X448+Kyber1024 because it provides a higher security level<a href="#section-4.1.2.1.3-8.6" class="pilcrow">¶</a>
 </li>
               </ul>
 </section>
@@ -1681,7 +1679,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <div id="other-algorithms">
 <section id="section-4.1.2.2">
             <h5 id="name-other-algorithms">
-<a href="#section-4.1.2.2" class="section-number selfRef">4.1.2.2. </a><a href="#name-other-algorithms" class="section-name selfRef">Other algorithms</a>
+<a href="#section-4.1.2.2" class="section-number selfRef">4.1.2.2. </a><a href="#name-other-algorithms" class="section-name selfRef">Other Algorithms</a>
             </h5>
 <p id="section-4.1.2.2-1">For the rest of the algorithm choices, it is simply whatever the initiator selects from the algorithms in common. Note that the DH or KEM key size influences the Hash Type and the size of the symmetric cipher key, as explained in <a href="#keyAgreementTypeBlock" class="xref">Section 5.2.5</a>.<a href="#section-4.1.2.2-1" class="pilcrow">¶</a></p>
 </section>
@@ -1723,11 +1721,11 @@ svg [stroke="fill"], svg [fill^="#fff"] {
         <h3 id="name-key-agreements">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-key-agreements" class="section-name selfRef">Key Agreements</a>
         </h3>
-<p id="section-4.4-1">The next step is the generation of a secret for deriving SRTP keying material.  ZRTP uses two key-exchange modes (DH and KEM) and two non-key-exchange modes (PreShared and Multistream), described in the following subsections.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
-<div id="key-exchange-modes-1">
+<p id="section-4.4-1">The next step is the generation of a secret for deriving SRTP keying material.  ZRTP uses for modes: DH, KEM, PreShared and Multistream, described in the following subsections.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<div id="DHandKEMModesSec">
 <section id="section-4.4.1">
-          <h4 id="name-key-exchange-modes-2">
-<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-key-exchange-modes-2" class="section-name selfRef">Key Exchange modes</a>
+          <h4 id="name-dh-and-kem-modes-2">
+<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-dh-and-kem-modes-2" class="section-name selfRef">DH and KEM Modes</a>
           </h4>
 <p id="section-4.4.1-1">The purpose of the key exchange is for the two ZRTP endpoints to generate a new shared secret, s0.  In addition, the endpoints discover if they have any cached or previously stored shared secrets in common, and they use them as part of the calculation of the session keys.
 Because the key exchange affects the state of the retained shared secret cache, only one in-process ZRTP key exchange may occur at a time between two ZRTP endpoints.  Otherwise, race conditions and cache integrity problems will result.  When multiple media streams are established in parallel between the same pair of ZRTP endpoints (determined by the ZIDs in the Hello messages), only one can be processed.  Once that exchange completes with Confirm2 and Conf2ACK messages, another ZRTP key exchange can begin.  This constraint does not apply when Multistream mode key agreement is used since the cached shared secrets are not affected.<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
@@ -1751,7 +1749,7 @@ Because the key exchange affects the state of the retained shared secret cache, 
 </div>
 <p id="section-4.4.1.1.1-4">where g and p are determined by the Key Agreement Type value. The DH public value pvi value is formatted as a big-endian octet string and fixed to the bit-length of the DH prime; leading zeros MUST NOT be truncated.<a href="#section-4.4.1.1.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.4.1.1.1-5">For Elliptic Curve DH, pvi is calculated and formatted according to the ECDH specification in <a href="#keyAgreementTypeBlock" class="xref">Section 5.2.5</a>, which refers in detail to certain sections of <span>[<a href="#NIST-SP800-56A" class="xref">NIST-SP800-56A</a>]</span>.<a href="#section-4.4.1.1.1-5" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.1.1-6">The hash commitment is performed by the initiator of the ZRTP exchange. The hash value of the initiator, hvi, includes a hash of the entire DHPart2 message as shown in <a href="#FigDHPart2Message" class="xref">Figure 8</a> (which includes the DH public value, pvi), and the responder's Hello message.  The hvi hash is truncated to 256 bits:<a href="#section-4.4.1.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.1.1-6">The hash commitment is performed by the initiator of the ZRTP exchange. The hash value of the initiator, hvi, includes a hash of the entire DHPart2 message as shown in <a href="#FigDHPart2Message" class="xref">Figure 9</a> (which includes the DH public value, pvi), and the responder's Hello message.  The hvi hash is truncated to 256 bits:<a href="#section-4.4.1.1.1-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.4.1.1.1-7">
 <pre>
 hvi = hash(initiator's DHPart2 message || responder's Hello message)
@@ -1873,8 +1871,8 @@ hvi = hash(initiator's DHPart2 message || responder's Hello message)
               </h6>
 <p id="section-4.4.1.2.1-1">A KEM mode is selected by setting the Key Agreement Type in the Commit to one of the KEM values from the table in <a href="#keyAgreementTypeBlock" class="xref">Section 5.2.5</a>.  In this mode, the key agreement begins with the initiator generating a fresh random key pair (public key pvi and secret key svi) based on the chosen Key Agreement Type value and a 256-bit random nonce.  For guidance on generating random numbers, see <a href="#RandomNumbersSec" class="xref">Section 4.8</a>.<a href="#section-4.4.1.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.4.1.2.1-2">pvi,svi = KEMgenKey()<a href="#section-4.4.1.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.2.1-3">The generated public key (pvi) is inserted in the Commit message as shown in <a href="#FigKEMCommitMessage" class="xref">Figure 7</a>, the random nonce (ni) is inserted in the KEMPart2 message which does not convey data directly related to the key exchange itself as shown in <a href="#FigKEMPart2Message" class="xref">Figure 10</a>.<a href="#section-4.4.1.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.2.1-4">The hash commitment is performed by the initiator of the ZRTP exchange. The hash value of the initiator, hvi, includes a hash of the entire KEMPart2 message as shown in <a href="#FigKEMPart2Message" class="xref">Figure 10</a> and the responder's Hello message. The hvi hash is truncated to 256 bits:<a href="#section-4.4.1.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.2.1-3">The generated public key (pvi) is inserted in the Commit message as shown in <a href="#FigKEMCommitMessage" class="xref">Figure 7</a>, the random nonce (ni) is inserted in the KEMPart2 message which does not convey data directly related to the key exchange itself as shown in <a href="#FigKEMPart2Message" class="xref">Figure 11</a>.<a href="#section-4.4.1.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.2.1-4">The hash commitment is performed by the initiator of the ZRTP exchange. The hash value of the initiator, hvi, includes a hash of the entire KEMPart2 message as shown in <a href="#FigKEMPart2Message" class="xref">Figure 11</a> and the responder's Hello message. The hvi hash is truncated to 256 bits:<a href="#section-4.4.1.2.1-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.4.1.2.1-5">
 <pre>
 hvi = hash(initiator's KEMPart2 message || responder's Hello message)
@@ -1922,7 +1920,7 @@ hvi = hash(initiator's KEMPart2 message || responder's Hello message)
 <div id="SharedSecretCalculationSec">
 <section id="section-4.4.1.3">
             <h5 id="name-shared-secret-calculation-f">
-<a href="#section-4.4.1.3" class="section-number selfRef">4.4.1.3. </a><a href="#name-shared-secret-calculation-f" class="section-name selfRef">Shared Secret Calculation for Key Exchange Mode</a>
+<a href="#section-4.4.1.3" class="section-number selfRef">4.4.1.3. </a><a href="#name-shared-secret-calculation-f" class="section-name selfRef">Shared Secret Calculation for DH and KEM Mode</a>
             </h5>
 <p id="section-4.4.1.3-1">A hash of the received and sent ZRTP messages in the current ZRTP exchange in the following order is calculated by both parties:<a href="#section-4.4.1.3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.4.1.3-2">
@@ -1955,27 +1953,25 @@ s0 = hash(counter || KEResult || "ZRTP-HMAC-KDF"
 KDF_Context = (ZIDi || ZIDr || total_hash)
 </pre><a href="#section-4.4.1.3-11" class="pilcrow">¶</a>
 </div>
-<p id="section-4.4.1.3-12">At this point in key exchange mode, the two endpoints proceed to the key derivations of ZRTPSess and the rest of the keys in <a href="#DerivingZRTPSessKeyAndSAS" class="xref">Section 4.5.2</a>, now that there is a defined s0.<a href="#section-4.4.1.3-12" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.3-12">At this point in DH or KEM mode, the two endpoints proceed to the key derivations of ZRTPSess and the rest of the keys in <a href="#DerivingZRTPSessKeyAndSAS" class="xref">Section 4.5.2</a>, now that there is a defined s0.<a href="#section-4.4.1.3-12" class="pilcrow">¶</a></p>
 </section>
 </div>
-</section>
-</div>
-<div id="non-key-exchange-modes">
-<section id="section-4.4.2">
-          <h4 id="name-non-key-exchange-modes">
-<a href="#section-4.4.2" class="section-number selfRef">4.4.2. </a><a href="#name-non-key-exchange-modes" class="section-name selfRef">Non Key Exchange modes</a>
-          </h4>
 <div id="presharedmode">
-<section id="section-4.4.2.1">
+<section id="section-4.4.1.4">
             <h5 id="name-presharedmode">
-<a href="#section-4.4.2.1" class="section-number selfRef">4.4.2.1. </a><a href="#name-presharedmode" class="section-name selfRef">PresharedMode</a>
-          </h5>
+<a href="#section-4.4.1.4" class="section-number selfRef">4.4.1.4. </a><a href="#name-presharedmode" class="section-name selfRef">PresharedMode</a>
+            </h5>
+<p id="section-4.4.1.4-1">The Preshared key agreement mode can be used to generate SRTP keys and salts without a DH or KEM calculation, instead relying on a shared secret from previous DH or KEM calculations between the endpoints.<a href="#section-4.4.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.4-2">This key agreement mode is useful to rapidly re-establish a secure session between two parties who have recently started and ended a secure session that has already performed a DH or KEM key agreement, without performing another lengthy calculation, which may be desirable on slow processors in resource-limited environments.  Preshared mode MUST NOT be used for adding additional media streams to an existing call.  Multistream mode MUST be used for this purpose.<a href="#section-4.4.1.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.4-3">In the most severe resource-limited environments, Preshared mode may be useful with processors that cannot perform a DH or KEM calculation in an ergonomically acceptable time limit.  Shared key material may be manually provisioned between two such endpoints in advance and still allow a limited subset of functionality.  Such a "better than nothing" implementation would have to be regarded as non-compliant with the ZRTP specification, but it could interoperate in Preshared (and if applicable, Multistream) mode with a compliant ZRTP endpoint.<a href="#section-4.4.1.4-3" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.4-4">Because Preshared mode affects the state of the retained shared secret cache, only one in-process ZRTP Preshared exchange may occur at a time between two ZRTP endpoints.  This rule is explained in more detail in <a href="#DHandKEMModesSec" class="xref">Section 4.4.1</a>, and applies for the same reasons as in DH mode.<a href="#section-4.4.1.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4.1.4-5">Preshared mode is only included in this specification to meet the R-REUSE requirement in the Media Security Requirements <span>[<a href="#RFC5479" class="xref">RFC5479</a>]</span> document.  A series of preshared-keyed calls between two ZRTP endpoints should use a DH or KEM key exchange periodically.  Preshared mode is only used if a cached shared secret has been established in an earlier session by a DH or KEM exchange, as discussed in <a href="#ZIDandCacheOperationSec" class="xref">Section 4.9</a>.<a href="#section-4.4.1.4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multistream-mode">
-<section id="section-4.4.2.2">
+<section id="section-4.4.1.5">
             <h5 id="name-multistream-mode">
-<a href="#section-4.4.2.2" class="section-number selfRef">4.4.2.2. </a><a href="#name-multistream-mode" class="section-name selfRef">Multistream Mode</a>
+<a href="#section-4.4.1.5" class="section-number selfRef">4.4.1.5. </a><a href="#name-multistream-mode" class="section-name selfRef">Multistream Mode</a>
           </h5>
 </section>
 </div>
@@ -2032,7 +2028,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
       </h3>
 </section>
 </div>
-<div id="zid-and-cache-operation">
+<div id="ZIDandCacheOperationSec">
 <section id="section-4.9">
         <h3 id="name-zid-and-cache-operation">
 <a href="#section-4.9" class="section-number selfRef">4.9. </a><a href="#name-zid-and-cache-operation" class="section-name selfRef">ZID and Cache Operation</a>
@@ -2051,7 +2047,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
         <h3 id="name-zrtp-packet-formats">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-zrtp-packet-formats" class="section-name selfRef">ZRTP Packet Formats</a>
         </h3>
-<p id="section-5.1-1">All ZRTP packets messages use the message format defined in <a href="#FigNonFragmentedMessage" class="xref">Figure 3</a> and <a href="#FigFragmentedMessage" class="xref">Figure 4</a>.  All word lengths referenced in this specification are 32 bits, or 4 octets.  All integer fields are carried in network byte order, that is, most-significant byte (octet) first, commonly known as big- endian.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">All ZRTP packets messages use the message format defined in <a href="#FigNonFragmentedMessage" class="xref">Figure 3</a> and <a href="#FigFragmentedMessage" class="xref">Figure 4</a>.  All word lengths referenced in this specification are 32 bits, or 4 octets.  All integer fields are carried in network byte order, that is, most-significant byte (octet) first, commonly known as big-endian.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-non-fragmented-message-pack"></span><div id="FigNonFragmentedMessage">
 <figure id="figure-3">
           <div class="alignLeft art-text artwork" id="section-5.1-2.1">
@@ -2059,7 +2055,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 0 1|Not Used (set to zero) |         Sequence Number       |
+   |0 0 0 1 0 0 0 0|  Not Used: 0  |         Sequence Number       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                 Magic Cookie 'ZRTP' (0x5a525450)              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -2085,7 +2081,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 0 1 1|Not Used (set to zero) |         Sequence Number       |
+   |0 0 0 1 0 0 0 1|  Not Used: 0  |         Sequence Number       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                 Magic Cookie 'ZRTP' (0x5a525450)              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -2108,7 +2104,8 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <a href="#name-fragmented-message-packet-f" class="selfRef">Fragmented Message Packet Format</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-4">This format is clearly identifiable as non-RTP due to the first two bits being zero, which looks like RTP version 0, which is not a valid RTP version number.  It is clearly distinguishable from STUN since the Magic Cookies are different. The 12 unused bits are set to zero and MUST be ignored when received.  In early versions of this spec, ZRTP messages were encapsulated in RTP header extensions, which made ZRTP an eponymous variant of RTP.  In later versions, the packet format changed to make it syntactically distinguishable from RTP. A fragmented message is identified by the third bit being set to 1 instead of 0.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-4"><span>[<a href="#RFC7983" class="xref">RFC7983</a>]</span> section 7 reserves for the ZRTP packet format the values 16 to 19 on the first byte to clearly distinguish ZRTP packets from STUN, DTLS, TURN or RTP/RTCP packets.
+Values 16 and 17 are used to distinguish fragmented and non-fragmented messages. The 8 unused bits are set to zero and MUST be ignored when received. Previous version of ZRTP non supporting the message fragmentation will simply discard the fragmented message as invalid.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.1-5.1">The Sequence Number is a count that is incremented for each ZRTP packet sent.  The count is initialized to a random value.  This is useful in estimating ZRTP packet loss and also detecting when ZRTP packets arrive out of sequence.<a href="#section-5.1-5.1" class="pilcrow">¶</a>
 </li>
@@ -2117,13 +2114,19 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
           <li class="normal" id="section-5.1-5.3">Source Identifier is the SSRC number of the RTP stream to which this ZRTP packet relates.  For cases of forking or forwarding, RTP, and hence ZRTP, may arrive at the same port from several different sources -- each of these sources will have a different SSRC and may initiate an independent ZRTP protocol session.  SSRC collisions would be disruptive to ZRTP.  SSRC collision handling procedures are described in <a href="#DiscoverySec" class="xref">Section 4.1</a>.<a href="#section-5.1-5.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-5.1-6">When the packet carries a message fragment, the header also includes:
-* message Id: a unique Id for this message, is attached to the message and is not incremented at each retransmission like the sequence number. It is initialised to a random value and is incremented for each new message generated.
-* message total length: size, in 32-bit words of the total message.
-* offset: offset of this fragment, in 32-bit words.
-* fragment length: size of this fragment, in 32-bit words.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.1-7">Messages susceptible to be fragmented are Commit and KEMPart1. There is then no reason to store fragments for several message. A simple buffer storing the message currently in reception is enough, if a fragment with message Id superior to the current one is received, the current buffer content must be discarded and the new message collection started. Fragments may overlap if the MTU is modified during the ZRTP handshake.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
-<p id="section-5.1-8">The ZRTP messages are defined in <a href="#ZRTPMessageFormats" class="xref">Section 5.2</a> and are of variable length.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.1-6">When the packet carries a message fragment, the header also includes:<a href="#section-5.1-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1-7.1">message Id: a unique Id for this message, is attached to the message and is not incremented at each retransmission like the sequence number. It is initialised to a random value and is incremented for each new message generated.<a href="#section-5.1-7.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.1-7.2">message total length: size, in 32-bit words of the total message.<a href="#section-5.1-7.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.1-7.3">offset: offset of this fragment, in 32-bit words.<a href="#section-5.1-7.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.1-7.4">fragment length: size of this fragment, in 32-bit words.<a href="#section-5.1-7.4" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-5.1-8">The messages susceptibles to be fragmented are Commit, KEMPart1, Confirm1 and Confirm2 messages. There is then no reason to store fragments for several messages. A simple buffer storing the message currently in reception is enough, if a fragment with message Id superior to the current one is received, the current buffer content must be discarded and the new message collection started. Fragments may overlap if the MTU is modified during the ZRTP handshake.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.1-9">The ZRTP messages are defined in <a href="#ZRTPMessageFormats" class="xref">Section 5.2</a> and are of variable length.<a href="#section-5.1-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="ZRTPMessageFormats">
@@ -2142,7 +2145,54 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <section id="section-5.2.2">
           <h4 id="name-hash-type-block">
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-hash-type-block" class="section-name selfRef">Hash Type Block</a>
-        </h4>
+          </h4>
+<p id="section-5.2.2-1"></p>
+<span id="name-hash-type-block-values"></span><div id="HashTypeBlockValues">
+<table class="center" id="table-2">
+            <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-hash-type-block-values" class="selfRef">Hash Type Block values</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Hash Type Block</th>
+                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"S256"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA-256 Hash defined in <span>[<a href="#NIST-FIPS180-4" class="xref">NIST-FIPS180-4</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"S384"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA-384 Hash defined in <span>[<a href="#NIST-FIPS180-4" class="xref">NIST-FIPS180-4</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"S512"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA-512 Hash defined in <span>[<a href="#NIST-FIPS180-4" class="xref">NIST-FIPS180-4</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"N256"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA3-256 Hash defined in <span>[<a href="#NIST-FIPS202" class="xref">NIST-FIPS202</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"N384"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA3-384 Hash defined in <span>[<a href="#NIST-FIPS202" class="xref">NIST-FIPS202</a>]</span>
+</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">"N512"</td>
+                <td class="text-center" rowspan="1" colspan="1">SHA3-512 Hash defined in <span>[<a href="#NIST-FIPS202" class="xref">NIST-FIPS202</a>]</span>
+</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
 </section>
 </div>
 <div id="cipher-type-block">
@@ -2166,155 +2216,142 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
           </h4>
 <p id="section-5.2.5-1"></p>
 <span id="name-key-agreement-type-block-va"></span><div id="KeyAgreementTypeBlockValuesDHMode">
-<table class="center" id="table-2">
+<table class="center" id="table-3">
             <caption>
-<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#table-3" class="selfRef">Table 3</a>:
 <a href="#name-key-agreement-type-block-va" class="selfRef">Key Agreement Type Block values for DH Mode</a>
             </caption>
 <thead>
               <tr>
                 <th class="text-left" rowspan="1" colspan="1">Key Agreement Type Block</th>
-                <th class="text-center" rowspan="1" colspan="1">pv words</th>
-                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+                <th class="text-center" rowspan="1" colspan="1">Short Type Block</th>
+                <th class="text-left" rowspan="1" colspan="1">Meaning</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"DH3k"</td>
-                <td class="text-center" rowspan="1" colspan="1">96</td>
-                <td class="text-center" rowspan="1" colspan="1">DH mode with p=3072 bit prime per RFC 3526, Section 4.</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-left" rowspan="1" colspan="1">DH mode with p=3072 bit prime per <span>[<a href="#RFC3526" class="xref">RFC3526</a>]</span>, Section 4.</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"DH2k"</td>
-                <td class="text-center" rowspan="1" colspan="1">64</td>
-                <td class="text-center" rowspan="1" colspan="1">DH mode with p=2048 bit prime per RFC 3526, Section 3.</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-left" rowspan="1" colspan="1">DH mode with p=2048 bit prime per <span>[<a href="#RFC3526" class="xref">RFC3526</a>]</span>, Section 3.</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"EC25"</td>
-                <td class="text-center" rowspan="1" colspan="1">8</td>
-                <td class="text-center" rowspan="1" colspan="1">Elliptic Curve DH, P-256 per RFC 5114, Section 2.6</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-left" rowspan="1" colspan="1">Elliptic Curve DH, P-256 per <span>[<a href="#RFC5114" class="xref">RFC5114</a>]</span>, Section 2.6</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"EC38"</td>
-                <td class="text-center" rowspan="1" colspan="1">12</td>
-                <td class="text-center" rowspan="1" colspan="1">Elliptic Curve DH, P-384 per RFC 5114, Section 2.7</td>
+                <td class="text-center" rowspan="1" colspan="1">-</td>
+                <td class="text-left" rowspan="1" colspan="1">Elliptic Curve DH, P-384 per <span>[<a href="#RFC5114" class="xref">RFC5114</a>]</span>, Section 2.7</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"X255"</td>
-                <td class="text-center" rowspan="1" colspan="1">8</td>
-                <td class="text-center" rowspan="1" colspan="1">ECDH X25519 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
+                <td class="text-center" rowspan="1" colspan="1">"X1"</td>
+                <td class="text-left" rowspan="1" colspan="1">ECDH X25519 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
 </td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"X414"</td>
-                <td class="text-center" rowspan="1" colspan="1">13</td>
-                <td class="text-center" rowspan="1" colspan="1">ECDH 41417 per <span>[<a href="#Ber14" class="xref">Ber14</a>]</span>
+                <td class="text-center" rowspan="1" colspan="1">"X2"</td>
+                <td class="text-left" rowspan="1" colspan="1">ECDH 41417 per <span>[<a href="#Ber14" class="xref">Ber14</a>]</span>
 </td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"X448"</td>
-                <td class="text-center" rowspan="1" colspan="1">14</td>
-                <td class="text-center" rowspan="1" colspan="1">ECDH X448 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
+                <td class="text-center" rowspan="1" colspan="1">"X3"</td>
+                <td class="text-left" rowspan="1" colspan="1">ECDH X448 per <span>[<a href="#RFC7748" class="xref">RFC7748</a>]</span>
 </td>
               </tr>
             </tbody>
           </table>
 </div>
-<span id="name-key-agreement-type-block-val"></span><div id="KeyAgreementTypeBlockValuesKEMMode">
-<table class="center" id="table-3">
+<span id="name-post-quantum-key-agreement-"></span><div id="PostQuantumKeyAgreementTypeBlockValues">
+<table class="center" id="table-4">
             <caption>
-<a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-key-agreement-type-block-val" class="selfRef">Key Agreement Type Block values for KEM Mode</a>
+<a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#name-post-quantum-key-agreement-" class="selfRef">Post Quantum Key Agreement Type Block values</a>
             </caption>
 <thead>
               <tr>
                 <th class="text-left" rowspan="1" colspan="1">Key Agreement Type Block</th>
-                <th class="text-center" rowspan="1" colspan="1">pk words</th>
-                <th class="text-center" rowspan="1" colspan="1">ct words</th>
-                <th class="text-center" rowspan="1" colspan="1">Meaning</th>
+                <th class="text-center" rowspan="1" colspan="1">Short Type Block</th>
+                <th class="text-left" rowspan="1" colspan="1">Meaning</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"KYB1"</td>
-                <td class="text-center" rowspan="1" colspan="1">200</td>
-                <td class="text-center" rowspan="1" colspan="1">192</td>
-                <td class="text-center" rowspan="1" colspan="1">Kyber512</td>
+                <td class="text-center" rowspan="1" colspan="1">"K1"</td>
+                <td class="text-left" rowspan="1" colspan="1">Kyber512</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"KYB2"</td>
-                <td class="text-center" rowspan="1" colspan="1">296</td>
-                <td class="text-center" rowspan="1" colspan="1">272</td>
-                <td class="text-center" rowspan="1" colspan="1">Kyber768</td>
+                <td class="text-center" rowspan="1" colspan="1">"K2"</td>
+                <td class="text-left" rowspan="1" colspan="1">Kyber768</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"KYB3"</td>
-                <td class="text-center" rowspan="1" colspan="1">392</td>
-                <td class="text-center" rowspan="1" colspan="1">392</td>
-                <td class="text-center" rowspan="1" colspan="1">Kyber1024</td>
+                <td class="text-center" rowspan="1" colspan="1">"K3"</td>
+                <td class="text-left" rowspan="1" colspan="1">Kyber1024</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"SIK1"</td>
-                <td class="text-center" rowspan="1" colspan="1">83</td>
-                <td class="text-center" rowspan="1" colspan="1">87</td>
-                <td class="text-center" rowspan="1" colspan="1">Sike434</td>
+                <td class="text-center" rowspan="1" colspan="1">"S1"</td>
+                <td class="text-left" rowspan="1" colspan="1">Sike434</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"SIK2"</td>
-                <td class="text-center" rowspan="1" colspan="1">116</td>
-                <td class="text-center" rowspan="1" colspan="1">122</td>
-                <td class="text-center" rowspan="1" colspan="1">Sike610</td>
+                <td class="text-center" rowspan="1" colspan="1">"S2"</td>
+                <td class="text-left" rowspan="1" colspan="1">Sike610</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">"SIK3"</td>
-                <td class="text-center" rowspan="1" colspan="1">141</td>
-                <td class="text-center" rowspan="1" colspan="1">149</td>
-                <td class="text-center" rowspan="1" colspan="1">Sike751</td>
+                <td class="text-center" rowspan="1" colspan="1">"S3"</td>
+                <td class="text-left" rowspan="1" colspan="1">Sike751</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X1K1"</td>
-                <td class="text-center" rowspan="1" colspan="1">208</td>
-                <td class="text-center" rowspan="1" colspan="1">200</td>
-                <td class="text-center" rowspan="1" colspan="1">X25519/Kyber512 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"SAB1"</td>
+                <td class="text-center" rowspan="1" colspan="1">"A1"</td>
+                <td class="text-left" rowspan="1" colspan="1">LightSaber</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X1S1"</td>
-                <td class="text-center" rowspan="1" colspan="1">91</td>
-                <td class="text-center" rowspan="1" colspan="1">95</td>
-                <td class="text-center" rowspan="1" colspan="1">X25519/Sike434 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"SAB2"</td>
+                <td class="text-center" rowspan="1" colspan="1">"A2"</td>
+                <td class="text-left" rowspan="1" colspan="1">Saber</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X2K2"</td>
-                <td class="text-center" rowspan="1" colspan="1">309</td>
-                <td class="text-center" rowspan="1" colspan="1">285</td>
-                <td class="text-center" rowspan="1" colspan="1">X41417/Kyber768 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"SAB3"</td>
+                <td class="text-center" rowspan="1" colspan="1">"A3"</td>
+                <td class="text-left" rowspan="1" colspan="1">FireSaber</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X2S2"</td>
-                <td class="text-center" rowspan="1" colspan="1">129</td>
-                <td class="text-center" rowspan="1" colspan="1">135</td>
-                <td class="text-center" rowspan="1" colspan="1">X41417/Sike610 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"NTR1"</td>
+                <td class="text-center" rowspan="1" colspan="1">"N1"</td>
+                <td class="text-left" rowspan="1" colspan="1">NTRU-HPS 2048-509</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X3K3"</td>
-                <td class="text-center" rowspan="1" colspan="1">406</td>
-                <td class="text-center" rowspan="1" colspan="1">406</td>
-                <td class="text-center" rowspan="1" colspan="1">X448/Kyber1024 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"NTR2"</td>
+                <td class="text-center" rowspan="1" colspan="1">"N2"</td>
+                <td class="text-left" rowspan="1" colspan="1">NTRU-HPS 2048-677</td>
               </tr>
               <tr>
-                <td class="text-left" rowspan="1" colspan="1">"X2S3"</td>
-                <td class="text-center" rowspan="1" colspan="1">155</td>
-                <td class="text-center" rowspan="1" colspan="1">159</td>
-                <td class="text-center" rowspan="1" colspan="1">X448/Sike751 Hybrid</td>
+                <td class="text-left" rowspan="1" colspan="1">"NTR3"</td>
+                <td class="text-center" rowspan="1" colspan="1">"N3"</td>
+                <td class="text-left" rowspan="1" colspan="1">NTRU-HPS 4096-821</td>
               </tr>
             </tbody>
           </table>
 </div>
-<span id="name-key-agreement-type-block-valu"></span><div id="KeyAgreementTypeBlockValuesNoKeyEchange">
-<table class="center" id="table-4">
+<span id="name-key-agreement-type-block-val"></span><div id="KeyAgreementTypeBlockValuesPrshMult">
+<table class="center" id="table-5">
             <caption>
-<a href="#table-4" class="selfRef">Table 4</a>:
-<a href="#name-key-agreement-type-block-valu" class="selfRef">Key Agreement Type Block values for non key exchange mode</a>
+<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#name-key-agreement-type-block-val" class="selfRef">Key Agreement Type Block values for Preshared and Multistream mode</a>
             </caption>
 <thead>
               <tr>
@@ -2339,6 +2376,22 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
               </tr>
             </tbody>
           </table>
+</div>
+<div id="hybrid-kem-designation">
+<section id="section-5.2.5.1">
+            <h5 id="name-hybrid-kem-designation">
+<a href="#section-5.2.5.1" class="section-number selfRef">5.2.5.1. </a><a href="#name-hybrid-kem-designation" class="section-name selfRef">Hybrid KEM designation</a>
+            </h5>
+<p id="section-5.2.5.1-1">The Hybrid KEM, constructed as decribed in <a href="#HybridKEMSec" class="xref">Section 6</a>, combines an ECDH algorithm(X25519, X41417 or X448) used in KEM form as described in <a href="#ECHDBasedKEMSec" class="xref">Section 6.1</a> and one of the PQ KEM from <a href="#KeyAgreementTypeBlockValuesDHMode" class="xref">Table 3</a>. The 4 characters char describing an hybrid KEM key agreement type block is built using the "Short Type Block" from <a href="#KeyAgreementTypeBlockValuesDHMode" class="xref">Table 3</a> and <a href="#PostQuantumKeyAgreementTypeBlockValues" class="xref">Table 4</a>. The ECDH-based KEM is always mentionned first. Examples:<a href="#section-5.2.5.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.5.1-2.1">X25519/Kyber512: "X1K1"<a href="#section-5.2.5.1-2.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.5.1-2.2">X448/Saber: "X3A2"<a href="#section-5.2.5.1-2.2" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.5.1-2.3">X41417/Sike751: "X2S3"<a href="#section-5.2.5.1-2.3" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
 </div>
 </section>
 </div>
@@ -2529,7 +2582,50 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <section id="section-5.6">
         <h3 id="name-dhpart1-message">
 <a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-dhpart1-message" class="section-name selfRef">DHPart1 Message</a>
-      </h3>
+        </h3>
+<span id="name-dhpart1-message-format"></span><div id="FigDHPart1Message">
+<figure id="figure-8">
+          <div class="alignLeft art-text artwork" id="section-5.6-1.1">
+<pre>
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|   length=depends on KA Type   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |              Message Type Block="DHPart1 " (2 words)          |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                   Hash image H1 (8 words)                     |
+   |                             . . .                             |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        rs1IDr (2 words)                       |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        rs2IDr (2 words)                       |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                     auxsecretIDr (2 words)                    |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                     pbxsecretIDr (2 words)                    |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                  pvr (length depends on KA Type)              |
+   |                               . . .                           |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         MAC (2 words)                         |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-dhpart1-message-format" class="selfRef">DHPart1 Message Format</a>
+          </figcaption></figure>
+</div>
 </section>
 </div>
 <div id="dhpart2-message">
@@ -2538,7 +2634,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <a href="#section-5.7" class="section-number selfRef">5.7. </a><a href="#name-dhpart2-message" class="section-name selfRef">DHPart2 Message</a>
         </h3>
 <span id="name-dhpart2-message-format"></span><div id="FigDHPart2Message">
-<figure id="figure-8">
+<figure id="figure-9">
           <div class="alignLeft art-text artwork" id="section-5.7-1.1">
 <pre>
     0                   1                   2                   3
@@ -2576,7 +2672,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-dhpart2-message-format" class="selfRef">DHPart2 Message Format</a>
           </figcaption></figure>
 </div>
@@ -2588,7 +2684,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-kempart1-message" class="section-name selfRef">KEMPart1 Message</a>
         </h3>
 <span id="name-kempart1-message-format"></span><div id="FigKEMPart1Message">
-<figure id="figure-9">
+<figure id="figure-10">
           <div class="alignLeft art-text artwork" id="section-5.8-1.1">
 <pre>
     0                   1                   2                   3
@@ -2626,7 +2722,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-kempart1-message-format" class="selfRef">KEMPart1 Message Format</a>
           </figcaption></figure>
 </div>
@@ -2638,13 +2734,13 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <a href="#section-5.9" class="section-number selfRef">5.9. </a><a href="#name-kempart2-message" class="section-name selfRef">KEMPart2 Message</a>
         </h3>
 <span id="name-kempart2-message-format"></span><div id="FigKEMPart2Message">
-<figure id="figure-10">
+<figure id="figure-11">
           <div class="alignLeft art-text artwork" id="section-5.9-1.1">
 <pre>
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|   length=depends on KA Type   |
+   |0 1 0 1 0 0 0 0 0 1 0 1 1 0 1 0|        length=25 words        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |              Message Type Block="KEMPart2" (2 words)          |
    |                                                               |
@@ -2676,7 +2772,7 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-kempart2-message-format" class="selfRef">KEMPart2 Message Format</a>
           </figcaption></figure>
 </div>
@@ -2759,9 +2855,9 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
       <h2 id="name-hybrid-kem">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-hybrid-kem" class="section-name selfRef">Hybrid KEM</a>
       </h2>
-<p id="section-6-1">PQC KEM algorithm being quite recent, it is recommended to combine them with well known, classical key exchange algorithms to obtain an hybrid KEM. We defined a method to hybrid KEM providing an interface identical to a "simple" KEM:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">PQC KEM algorithm being quite recent, it is recommended to combine them with well-known, classical key exchange algorithms to obtain an hybrid KEM. We defined a method to hybridize key exchange schemes by providing an interface identical to a "simple" KEM:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-2.1">Generates a fresh set of key pair:<a href="#section-6-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6-2.1">Generate a fresh set of key pair:<a href="#section-6-2.1" class="pilcrow">¶</a>
 </li>
       </ul>
 <div class="alignLeft art-text artwork" id="section-6-3">
@@ -2770,7 +2866,7 @@ publicKey, secretKey = KEMgenKey()
 </pre><a href="#section-6-3" class="pilcrow">¶</a>
 </div>
 <ul class="normal">
-<li class="normal" id="section-6-4.1">Generates a sharedSecret and encapsulates it in cipherText using the given publicKey:<a href="#section-6-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6-4.1">Generate a sharedSecret and encapsulates it in cipherText using the given publicKey:<a href="#section-6-4.1" class="pilcrow">¶</a>
 </li>
       </ul>
 <div class="alignLeft art-text artwork" id="section-6-5">
@@ -2823,10 +2919,10 @@ sharedSecret = ECDHcomputeShared( selfSecret, peerPublic )
 publicKey = ECDHderivePublicKey( secretKey )
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-9">The ECDH-based KEM is produced using HKDF as defined in <span>[<a href="#RFC5869" class="xref">RFC5869</a>]</span> based on the negotiated hash algorithm:<a href="#section-6.1-9" class="pilcrow">¶</a></p>
+<p id="section-6.1-9">The ECDH-based KEM relies upon HKDF as defined in <span>[<a href="#RFC5869" class="xref">RFC5869</a>]</span> based on the negotiated hash algorithm:<a href="#section-6.1-9" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.1-10">
 <pre>
-kfd ( ikm, context , outputSize ):
+kfd ( ikm, context, outputSize ):
    ikm = "ZRTP" || ECDHId || "aea_prk" || ikm
    salt = ""
    info =  outputSize || "ZRTP" || ECDHId
@@ -2849,9 +2945,9 @@ KEMdecaps( cipherText, secretKey ):
 </div>
 <p id="section-6.1-11">The implicit value ECDHId defined as follow:<a href="#section-6.1-11" class="pilcrow">¶</a></p>
 <span id="name-ecdh-ids"></span><div id="ecdhid-values">
-<table class="center" id="table-5">
+<table class="center" id="table-6">
           <caption>
-<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#table-6" class="selfRef">Table 6</a>:
 <a href="#name-ecdh-ids" class="selfRef">ECDH IDs</a>
           </caption>
 <thead>
@@ -2891,7 +2987,7 @@ KEMdecaps( cipherText, secretKey ):
 <div id="KEMcombiner">
 <section id="section-6.2">
         <h3 id="name-kem-combiner">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-kem-combiner" class="section-name selfRef">KEM combiner</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-kem-combiner" class="section-name selfRef">KEM Combiner</a>
         </h3>
 <p id="section-6.2-1">Section 3.3 in <span>[<a href="#Bin18" class="xref">Bin18</a>]</span> describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two KEMs using HMAC-SHA256 as dual Pseudo Random Function and extractor.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">The two combined KEMs are noted KEM_1 and KEM_2. PublicKey, secretKey and cipherText sizes are implicitly known for each component KEM, so the function "split" can separate two concatenated entities.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
@@ -2902,8 +2998,8 @@ KEMdecaps( cipherText, secretKey ):
 <div class="alignLeft art-text artwork" id="section-6.2-4">
 <pre>
 publicKey, secretKey = KEMgenKey():
-   pk1, sk1 = KEM_1genKey()
-   pk2, sk2 = KEM_2genKey()
+   pk1, sk1 = KEM_1.genKey()
+   pk2, sk2 = KEM_2.genKey()
    return pk1 || pk2, sk1 || sk2
 </pre><a href="#section-6.2-4" class="pilcrow">¶</a>
 </div>
@@ -2916,8 +3012,8 @@ publicKey, secretKey = KEMgenKey():
 sharedSecret, cipherText = KEMencaps( publicKey ):
    pk1, pk2 = split( publicKey )
 
-   ss1, ct1 = KEM_1encaps( pk1 )
-   ss2, ct2 = KEM_2encaps( pk2 )
+   ss1, ct1 = KEM_1.encaps( pk1 )
+   ss2, ct2 = KEM_2.encaps( pk2 )
    cipherText = ct1 || ct2
 
    ke = HMAC( "", ss1 )
@@ -2938,8 +3034,8 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
    sk1, sk2 = split( secretKey )
    ct1, ct2 = split( cipherText )
 
-   ss1 = KEM_1decaps( ct1, sk1 )
-   ss2 = KEM_2decaps( ct2, sk2 )
+   ss1 = KEM_1.decaps( ct1, sk1 )
+   ss2 = KEM_2.decaps( ct2, sk2 )
 
    ke = HMAC( "", ss1 )
    kd = HMAC( ke, ss2 )
@@ -2948,7 +3044,7 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
    return sharedSecret
 </pre><a href="#section-6.2-9" class="pilcrow">¶</a>
 </div>
-<p id="section-6.2-10">The HMAC function is based on the negociated hash algorithm<a href="#section-6.2-10" class="pilcrow">¶</a></p>
+<p id="section-6.2-10">The HMAC function is based on the negotiated hash algorithm.<a href="#section-6.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3056,7 +3152,7 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
       <h2 id="name-security-considerations">
 <a href="#section-16" class="section-number selfRef">16. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="self-healing-key-continuity-feature">
+<div id="SelfHealingKeyContinuityFeatureSec">
 <section id="section-16.1">
         <h3 id="name-self-healing-key-continuity">
 <a href="#section-16.1" class="section-number selfRef">16.1. </a><a href="#name-self-healing-key-continuity" class="section-name selfRef">Self-Healing Key Continuity Feature</a>
@@ -3089,6 +3185,10 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
         <dd>
 <span class="refAuthor">Rosenberg, J.</span>, <span class="refAuthor">Schulzrinne, H.</span>, <span class="refAuthor">Camarillo, G.</span>, <span class="refAuthor">Johnston, A.</span>, <span class="refAuthor">Peterson, J.</span>, <span class="refAuthor">Sparks, R.</span>, <span class="refAuthor">Handley, M.</span>, and <span class="refAuthor">E. Schooler</span>, <span class="refTitle">"SIP: Session Initiation Protocol"</span>, <span class="seriesInfo">RFC 3261</span>, <span class="seriesInfo">DOI 10.17487/RFC3261</span>, <time datetime="2002-06" class="refDate">June 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3261">https://www.rfc-editor.org/rfc/rfc3261</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC3526">[RFC3526]</dt>
+        <dd>
+<span class="refAuthor">Kivinen, T.</span> and <span class="refAuthor">M. Kojo</span>, <span class="refTitle">"More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)"</span>, <span class="seriesInfo">RFC 3526</span>, <span class="seriesInfo">DOI 10.17487/RFC3526</span>, <time datetime="2003-05" class="refDate">May 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3526">https://www.rfc-editor.org/rfc/rfc3526</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC3550">[RFC3550]</dt>
         <dd>
 <span class="refAuthor">Schulzrinne, H.</span>, <span class="refAuthor">Casner, S.</span>, <span class="refAuthor">Frederick, R.</span>, and <span class="refAuthor">V. Jacobson</span>, <span class="refTitle">"RTP: A Transport Protocol for Real-Time Applications"</span>, <span class="seriesInfo">STD 64</span>, <span class="seriesInfo">RFC 3550</span>, <span class="seriesInfo">DOI 10.17487/RFC3550</span>, <time datetime="2003-07" class="refDate">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3550">https://www.rfc-editor.org/rfc/rfc3550</a>&gt;</span>. </dd>
@@ -3096,6 +3196,14 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
 <dt id="RFC3711">[RFC3711]</dt>
         <dd>
 <span class="refAuthor">Baugher, M.</span>, <span class="refAuthor">McGrew, D.</span>, <span class="refAuthor">Naslund, M.</span>, <span class="refAuthor">Carrara, E.</span>, and <span class="refAuthor">K. Norrman</span>, <span class="refTitle">"The Secure Real-time Transport Protocol (SRTP)"</span>, <span class="seriesInfo">RFC 3711</span>, <span class="seriesInfo">DOI 10.17487/RFC3711</span>, <time datetime="2004-03" class="refDate">March 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3711">https://www.rfc-editor.org/rfc/rfc3711</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5114">[RFC5114]</dt>
+        <dd>
+<span class="refAuthor">Lepinski, M.</span> and <span class="refAuthor">S. Kent</span>, <span class="refTitle">"Additional Diffie-Hellman Groups for Use with IETF Standards"</span>, <span class="seriesInfo">RFC 5114</span>, <span class="seriesInfo">DOI 10.17487/RFC5114</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5114">https://www.rfc-editor.org/rfc/rfc5114</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5479">[RFC5479]</dt>
+        <dd>
+<span class="refAuthor">Wing, D., Ed.</span>, <span class="refAuthor">Fries, S.</span>, <span class="refAuthor">Tschofenig, H.</span>, and <span class="refAuthor">F. Audet</span>, <span class="refTitle">"Requirements and Analysis of Media Security Management Protocols"</span>, <span class="seriesInfo">RFC 5479</span>, <span class="seriesInfo">DOI 10.17487/RFC5479</span>, <time datetime="2009-04" class="refDate">April 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5479">https://www.rfc-editor.org/rfc/rfc5479</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5869">[RFC5869]</dt>
         <dd>
@@ -3108,6 +3216,10 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
 <dt id="RFC7748">[RFC7748]</dt>
         <dd>
 <span class="refAuthor">Langley, A.</span>, <span class="refAuthor">Hamburg, M.</span>, and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"Elliptic Curves for Security"</span>, <span class="seriesInfo">RFC 7748</span>, <span class="seriesInfo">DOI 10.17487/RFC7748</span>, <time datetime="2016-01" class="refDate">January 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7748">https://www.rfc-editor.org/rfc/rfc7748</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7983">[RFC7983]</dt>
+        <dd>
+<span class="refAuthor">Petit-Huguenin, M.</span> and <span class="refAuthor">G. Salgueiro</span>, <span class="refTitle">"Multiplexing Scheme Updates for Secure Real-time Transport Protocol (SRTP) Extension for Datagram Transport Layer Security (DTLS)"</span>, <span class="seriesInfo">RFC 7983</span>, <span class="seriesInfo">DOI 10.17487/RFC7983</span>, <time datetime="2016-09" class="refDate">September 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7983">https://www.rfc-editor.org/rfc/rfc7983</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9180">[RFC9180]</dt>
       <dd>
@@ -3127,6 +3239,14 @@ sharedSecret = KEMdecaps( cipherText, secretKey ):
 <dt id="Bin18">[Bin18]</dt>
         <dd>
 <span class="refAuthor">Bindel, N.</span>, <span class="refAuthor">Brendel, J.</span>, <span class="refAuthor">Fischlin, M.</span>, <span class="refAuthor">Goncalves, B.</span>, and <span class="refAuthor">D. Stebila</span>, <span class="refTitle">"Hybrid Key Encapsulation Mechanisms and Authenticated Key Exchange"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://eprint.iacr.org/2018/903.pdf">https://eprint.iacr.org/2018/903.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NIST-FIPS180-4">[NIST-FIPS180-4]</dt>
+        <dd>
+<span class="refTitle">"Secure Hash Standard (SHS)"</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://csrc.nist.gov/publications/detail/fips/180/4/final">https://csrc.nist.gov/publications/detail/fips/180/4/final</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NIST-FIPS202">[NIST-FIPS202]</dt>
+        <dd>
+<span class="refTitle">"SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions"</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://csrc.nist.gov/publications/detail/fips/202/final">https://csrc.nist.gov/publications/detail/fips/202/final</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NIST-PQC">[NIST-PQC]</dt>
         <dd>
