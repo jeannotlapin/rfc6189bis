@@ -1172,6 +1172,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
                     <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-dh-and-kem-modes-2" class="xref">DH and KEM Modes</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.2">
+                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-presharedmode" class="xref">PresharedMode</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.3">
+                    <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="xref">4.4.3</a>.  <a href="#name-multistream-mode" class="xref">Multistream Mode</a></p>
+</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
@@ -1956,25 +1962,25 @@ KDF_Context = (ZIDi || ZIDr || total_hash)
 <p id="section-4.4.1.3-12">At this point in DH or KEM mode, the two endpoints proceed to the key derivations of ZRTPSess and the rest of the keys in <a href="#DerivingZRTPSessKeyAndSAS" class="xref">Section 4.5.2</a>, now that there is a defined s0.<a href="#section-4.4.1.3-12" class="pilcrow">¶</a></p>
 </section>
 </div>
+</section>
+</div>
 <div id="presharedmode">
-<section id="section-4.4.1.4">
-            <h5 id="name-presharedmode">
-<a href="#section-4.4.1.4" class="section-number selfRef">4.4.1.4. </a><a href="#name-presharedmode" class="section-name selfRef">PresharedMode</a>
-            </h5>
-<p id="section-4.4.1.4-1">The Preshared key agreement mode can be used to generate SRTP keys and salts without a DH or KEM calculation, instead relying on a shared secret from previous DH or KEM calculations between the endpoints.<a href="#section-4.4.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.4-2">This key agreement mode is useful to rapidly re-establish a secure session between two parties who have recently started and ended a secure session that has already performed a DH or KEM key agreement, without performing another lengthy calculation, which may be desirable on slow processors in resource-limited environments.  Preshared mode MUST NOT be used for adding additional media streams to an existing call.  Multistream mode MUST be used for this purpose.<a href="#section-4.4.1.4-2" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.4-3">In the most severe resource-limited environments, Preshared mode may be useful with processors that cannot perform a DH or KEM calculation in an ergonomically acceptable time limit.  Shared key material may be manually provisioned between two such endpoints in advance and still allow a limited subset of functionality.  Such a "better than nothing" implementation would have to be regarded as non-compliant with the ZRTP specification, but it could interoperate in Preshared (and if applicable, Multistream) mode with a compliant ZRTP endpoint.<a href="#section-4.4.1.4-3" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.4-4">Because Preshared mode affects the state of the retained shared secret cache, only one in-process ZRTP Preshared exchange may occur at a time between two ZRTP endpoints.  This rule is explained in more detail in <a href="#DHandKEMModesSec" class="xref">Section 4.4.1</a>, and applies for the same reasons as in DH mode.<a href="#section-4.4.1.4-4" class="pilcrow">¶</a></p>
-<p id="section-4.4.1.4-5">Preshared mode is only included in this specification to meet the R-REUSE requirement in the Media Security Requirements <span>[<a href="#RFC5479" class="xref">RFC5479</a>]</span> document.  A series of preshared-keyed calls between two ZRTP endpoints should use a DH or KEM key exchange periodically.  Preshared mode is only used if a cached shared secret has been established in an earlier session by a DH or KEM exchange, as discussed in <a href="#ZIDandCacheOperationSec" class="xref">Section 4.9</a>.<a href="#section-4.4.1.4-5" class="pilcrow">¶</a></p>
+<section id="section-4.4.2">
+          <h4 id="name-presharedmode">
+<a href="#section-4.4.2" class="section-number selfRef">4.4.2. </a><a href="#name-presharedmode" class="section-name selfRef">PresharedMode</a>
+          </h4>
+<p id="section-4.4.2-1">The Preshared key agreement mode can be used to generate SRTP keys and salts without a DH or KEM calculation, instead relying on a shared secret from previous DH or KEM calculations between the endpoints.<a href="#section-4.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-2">This key agreement mode is useful to rapidly re-establish a secure session between two parties who have recently started and ended a secure session that has already performed a DH or KEM key agreement, without performing another lengthy calculation, which may be desirable on slow processors in resource-limited environments.  Preshared mode MUST NOT be used for adding additional media streams to an existing call.  Multistream mode MUST be used for this purpose.<a href="#section-4.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-3">In the most severe resource-limited environments, Preshared mode may be useful with processors that cannot perform a DH or KEM calculation in an ergonomically acceptable time limit.  Shared key material may be manually provisioned between two such endpoints in advance and still allow a limited subset of functionality.  Such a "better than nothing" implementation would have to be regarded as non-compliant with the ZRTP specification, but it could interoperate in Preshared (and if applicable, Multistream) mode with a compliant ZRTP endpoint.<a href="#section-4.4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-4">Because Preshared mode affects the state of the retained shared secret cache, only one in-process ZRTP Preshared exchange may occur at a time between two ZRTP endpoints.  This rule is explained in more detail in <a href="#DHandKEMModesSec" class="xref">Section 4.4.1</a>, and applies for the same reasons as in DH mode.<a href="#section-4.4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-5">Preshared mode is only included in this specification to meet the R-REUSE requirement in the Media Security Requirements <span>[<a href="#RFC5479" class="xref">RFC5479</a>]</span> document.  A series of preshared-keyed calls between two ZRTP endpoints should use a DH or KEM key exchange periodically.  Preshared mode is only used if a cached shared secret has been established in an earlier session by a DH or KEM exchange, as discussed in <a href="#ZIDandCacheOperationSec" class="xref">Section 4.9</a>.<a href="#section-4.4.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multistream-mode">
-<section id="section-4.4.1.5">
-            <h5 id="name-multistream-mode">
-<a href="#section-4.4.1.5" class="section-number selfRef">4.4.1.5. </a><a href="#name-multistream-mode" class="section-name selfRef">Multistream Mode</a>
-          </h5>
-</section>
-</div>
+<section id="section-4.4.3">
+          <h4 id="name-multistream-mode">
+<a href="#section-4.4.3" class="section-number selfRef">4.4.3. </a><a href="#name-multistream-mode" class="section-name selfRef">Multistream Mode</a>
+        </h4>
 </section>
 </div>
 </section>

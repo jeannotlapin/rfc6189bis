@@ -73,6 +73,8 @@ Table of Contents
        4.3.2.  Handling a Shared Secret Cache Mismatch
      4.4.  Key Agreements
        4.4.1.  DH and KEM Modes
+       4.4.2.  PresharedMode
+       4.4.3.  Multistream Mode
      4.5.  Key Derivation
        4.5.1.  The ZRTP Key Derivation Function
        4.5.2.  Deriving ZRTPSess Key and SAS in Key Exchange or
@@ -875,7 +877,7 @@ Table of Contents
    derivations of ZRTPSess and the rest of the keys in Section 4.5.2,
    now that there is a defined s0.
 
-4.4.1.4.  PresharedMode
+4.4.2.  PresharedMode
 
    The Preshared key agreement mode can be used to generate SRTP keys
    and salts without a DH or KEM calculation, instead relying on a
@@ -913,7 +915,7 @@ Table of Contents
    established in an earlier session by a DH or KEM exchange, as
    discussed in Section 4.9.
 
-4.4.1.5.  Multistream Mode
+4.4.3.  Multistream Mode
 
 4.5.  Key Derivation
 
