@@ -20,19 +20,25 @@ author:
       -
         ins: P. Zimmermann
         name: Philip Zimmermann
-        org: Zfone Project
+        org: Silent Circle
         email: prz@mit.edu
 
       -
-        ins: A. Johnston
-        name: Alan Johnston
-        org: Avaya
-        email: alan.b.johnston@gmail.com
+        ins: J. Pascal
+        name: Johan Pascal
+        org: Belledonne Communications
+        email: johan.pascal@linphone.org
+
       -
-        ins: J. Callas
-        name: Jon Callas
-        org: Apple, Inc.
-        email: jon@callas.org
+        ins: L. Ferreira
+        name: Loic Ferreira
+
+      -
+        ins: T. Cross
+        name: Travis Cross
+	org: OfficeTone
+        email: tc@traviscross.com
+
 
 contributor:
 
@@ -698,23 +704,27 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 |---
 | "KYB3" | "K3" | Kyber1024 |
 |---
-| "SIK1" | "S1" | Sike434 |
+| "BIK1" | "B1" | Bike-L1 |
 |---
-| "SIK2" | "S2" | Sike610 |
+| "BIK3" | "B3" | Bike-L3 |
 |---
-| "SIK3" | "S3" | Sike751 |
+| "HQC1" | "H1" | HQC-128 |
 |---
-| "SAB1" | "A1" | LightSaber |
+| "HQC2" | "H2" | HQC-192 |
 |---
-| "SAB2" | "A2" | Saber |
-|---
-| "SAB3" | "A3" | FireSaber |
+| "HQC3" | "H3" | HQC-256 |
 |---
 | "NTR1" | "N1" | NTRU-HPS 2048-509 |
 |---
 | "NTR2" | "N2" | NTRU-HPS 2048-677 |
 |---
 | "NTR3" | "N3" | NTRU-HPS 4096-821 |
+|---
+| "SAB1" | "A1" | LightSaber |
+|---
+| "SAB2" | "A2" | Saber |
+|---
+| "SAB3" | "A3" | FireSaber |
 |---
 {: #PostQuantumKeyAgreementTypeBlockValues title="Post Quantum Key Agreement Type Block values"}
 
@@ -735,7 +745,7 @@ The Hybrid KEM, constructed as decribed in {{HybridKEMSec}}, combines an ECDH al
 
 * X448/Saber: "X3A2"
 
-* X41417/Sike751: "X2S3"
+* X41417/Bike-L3: "X2B3"
 
 ### SAS Type Block
 
@@ -1146,7 +1156,7 @@ The implicit value ECDHId defined as follow:
 
 ## KEM Combiner {#KEMcombiner}
 
-Section 3.3 in {{Bin18}} describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two KEMs using HMAC-SHA256 as dual Pseudo Random Function and extractor.
+Section 3.3 in {{Bin18}} describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two KEMs using HMAC-SHA as dual Pseudo Random Function and extractor.
 
 The two combined KEMs are noted KEM\_1 and KEM\_2. PublicKey, secretKey and cipherText sizes are implicitly known for each component KEM, so the function "split" can separate two concatenated entities.
 
@@ -1175,7 +1185,6 @@ sharedSecret, cipherText = KEMencaps( publicKey ):
 
    return sharedSecret, cipherText
 ~~~
-The HMAC function is based on the negociated hash algorithm
 
 * Use the given secretKey to compute the sharedSecret encapsulated in cipherText:
 
