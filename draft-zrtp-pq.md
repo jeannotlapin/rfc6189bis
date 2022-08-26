@@ -32,13 +32,13 @@ author:
       -
         ins: L. Ferreira
         name: Loïc Ferreira
-		org: Orange
-		email: loic.ferreira@orange.com
+        org: Orange
+        email: loic.ferreira@orange.com
 
       -
         ins: T. Cross
         name: Travis Cross
-		org: OfficeTone
+        org: OfficeTone
         email: tc@traviscross.com
 
 
@@ -87,14 +87,14 @@ informative:
       date: "August 2015"
 
    NIST-FIPS186-5:
-	  title: "Digital Signature Standard (DSS)"
-	  target: "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5-draft.pdf"
-	  date: "October 2019"
+      title: "Digital Signature Standard (DSS)"
+      target: "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5-draft.pdf"
+      date: "October 2019"
 
    NIST-SP800-186:
-	  title: "Recommendations for Discrete Logarithm-Based Cryptography: Elliptic Curve Domain Parameters"
-	  target: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-186-draft.pdf"
-	  date: "October 2019"
+      title: "Recommendations for Discrete Logarithm-Based Cryptography: Elliptic Curve Domain Parameters"
+      target: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-186-draft.pdf"
+      date: "October 2019"
 
    Ber14:
       title: "Curve41417: Karatsuba revisited"
