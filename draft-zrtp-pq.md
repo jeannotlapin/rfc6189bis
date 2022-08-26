@@ -31,12 +31,14 @@ author:
 
       -
         ins: L. Ferreira
-        name: Loic Ferreira
+        name: Loïc Ferreira
+		org: Orange
+		email: loic.ferreira@orange.com
 
       -
         ins: T. Cross
         name: Travis Cross
-	org: OfficeTone
+		org: OfficeTone
         email: tc@traviscross.com
 
 
@@ -55,6 +57,8 @@ normative:
    RFC5114:
    RFC5479:
    RFC7983:
+   RFC1191:
+   RFC1981:
 
 informative:
    NIST-PQC:
@@ -81,6 +85,16 @@ informative:
       title: "SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions"
       target: "https://csrc.nist.gov/publications/detail/fips/202/final"
       date: "August 2015"
+
+   NIST-FIPS186-5:
+	  title: "Digital Signature Standard (DSS)"
+	  target: "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5-draft.pdf"
+	  date: "October 2019"
+
+   NIST-SP800-186:
+	  title: "Recommendations for Discrete Logarithm-Based Cryptography: Elliptic Curve Domain Parameters"
+	  target: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-186-draft.pdf"
+	  date: "October 2019"
 
    Ber14:
       title: "Curve41417: Karatsuba revisited"
@@ -649,7 +663,7 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 
 ### Message Type Block
 
-### Hash Type Block
+### Hash Type Block {#HashTypeBlockSec}
 ----------------
 
 |---
@@ -749,9 +763,9 @@ The Hybrid KEM, constructed as decribed in {{HybridKEMSec}}, combines an ECDH al
 
 ### SAS Type Block
 
-### Signature Type Block
+### Signature Type Block {#SignatureTypeBlockSec}
 
-## Hello Message
+## Hello Message {#HelloMessageSec}
 
 
 ~~~~~~~~~~
@@ -1212,6 +1226,37 @@ The HMAC function is based on the negotiated hash algorithm.
 ## SAS Verified Flag
 
 ## Signing the SAS {#signingSASsec}
+
+In most applications, it is desirable to avoid the added complexity of a PKI-backed digital signature, which is why ZRTP is designed not to require it. Nonetheless, in some applications, it may be hard to arrange for two human users to verbally compare the SAS. Or, an application may already be using an existing PKI and wants to use it to augment ZRTP.
+
+To handle these cases, ZRTP allows for an OPTIONAL signature feature, which allows the SAS to be checked without human participation. The SAS MAY be signed and the signature sent inside the Confirm1, Confirm2 (Figure 10), or SASrelay (Figure 16) messages. The signature type (Section {{SignatureTypeBlockSec}}), length of the signature, and the key used to create the signature (or a link to it) are all sent along with the signature. The signature is calculated across the entire SAS hash result (sashash), from which the sasvalue was derived. The signatures exchanged in the encrypted Confirm1, Confirm2, or SASrelay messages MAY be used to authenticate the ZRTP exchange. A signature may be sent only in the initial media stream in a DH or ECDH ZRTP exchange, not in Multistream mode.
+
+The initiator computes its signature as follows:
+~~~
+sigi = sign(Initiator's private key, "Initiator" || sashash)
+~~~
+The responder computes its signature as follows:
+~~~
+sigr = sign(Responder's private key, "Responder" || sashash)
+~~~
+  
+Although the signature is sent, the material that is signed, the sashash, is not sent with it in the Confirm message, since both parties have already independently calculated the sashash. That is not the case for the SASrelay message, which must relay the sashash. To avoid unnecessary signature calculations, a signature SHOULD NOT be sent if the other ZRTP endpoint did not set the (S) flag in the Hello message (Section {{HelloMessageSec}}).
+
+Note that the choice of hash algorithm used in the digital signature is independent of the hash used in the sashash. The sashash is determined by the negotiated Hash Type (Section {{HashTypeBlockSec}}), while the hash used by the digital signature is separately defined by the digital signature algorithm. For example, the sashash may be based on SHA-256, while the digital signature might use SHA-384, if an ECDSA P-384 key is used.
+
+If the sashash (which is always truncated to 256 bits) is shorter than the signature hash, the security is not weakened because the hash commitment precludes the attacker from searching for sashash collisions.
+
+ECDSA algorithms may be used with either OpenPGP-formatted keys, or X.509v3 certificates. If the ZRTP key exchange is ECDH, and the SAS is signed, then the signature SHOULD be ECDSA, and SHOULD use the same size curve as the ECDH exchange if an ECDSA key of that size is available.
+
+If a ZRTP endpoint supports incoming signatures (evidenced by setting the (S) flag in the Hello message), it SHOULD be able to parse signatures from the other endpoint in OpenPGP format and MUST be able to parse them in X.509v3 format. If the incoming signature is in an unsupported format, or the trust model does not lead to a trusted introducer or a trusted certificate authority (CA), another authentication method may be used if available, such as the SAS compare, or a cached shared secret from a previous session. If none of these methods are available, it is up to the ZRTP user agent and the user to decide whether to proceed with the call, after the user is informed.
+
+ECDSA {{NIST-FIPS186-5}} has a feature that allows most of the signature calculation to be done in advance of the session, reducing latency during call setup. This is useful for low-power mobile handsets.
+
+ECDSA is preferred because it has compact keys as well as compact signatures. If the signature along with its public key certificate are insufficiently compact, the Confirm message may become too long for the maximum transmission unit (MTU) size, and UDP fragmentation may result. Some firewalls and NATs may discard fragmented UDP packets, which would cause the ZRTP exchange to fail. It is RECOMMENDED that a ZRTP endpoint avoid sending signatures if they would cause UDP fragmentation. For a discussion on MTU size and PMTU discovery, see {{RFC1191}} and {{RFC1981}}.
+
+From a packet-size perspective, ECDSA produces equally compact signatures for a given signature strength.
+
+All signatures generated MUST use only NIST-approved hash algorithms, and MUST avoid using SHA1. This applies to both OpenPGP and X.509v3 signatures. NIST-approved hash algorithms are found in {{NIST-FIPS186-5}}. All ECDSA curves used throughout this spec are over prime fields, drawn from Section 4.2 of {{NIST-SP800-186}}.
 
 ## Relaying SAS through a PBX
 
