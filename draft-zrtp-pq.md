@@ -31,7 +31,7 @@ author:
 
       -
         ins: L. Ferreira
-        name: Loïc Ferreira
+        name: Lo&#239;c Ferreira
         org: Orange
         email: loic.ferreira@orange.com
 
@@ -1239,7 +1239,7 @@ The responder computes its signature as follows:
 ~~~
 sigr = sign(Responder's private key, "Responder" || sashash)
 ~~~
-  
+
 Although the signature is sent, the material that is signed, the sashash, is not sent with it in the Confirm message, since both parties have already independently calculated the sashash. That is not the case for the SASrelay message, which must relay the sashash. To avoid unnecessary signature calculations, a signature SHOULD NOT be sent if the other ZRTP endpoint did not set the (S) flag in the Hello message (Section {{HelloMessageSec}}).
 
 Note that the choice of hash algorithm used in the digital signature is independent of the hash used in the sashash. The sashash is determined by the negotiated Hash Type (Section {{HashTypeBlockSec}}), while the hash used by the digital signature is separately defined by the digital signature algorithm. For example, the sashash may be based on SHA-256, while the digital signature might use SHA-384, if an ECDSA P-384 key is used.
