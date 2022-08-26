@@ -31,7 +31,7 @@ author:
 
       -
         ins: L. Ferreira
-        name: Loïc Ferreira
+        name: L. Ferreira
         org: Orange
         email: loic.ferreira@orange.com
 
