@@ -1232,10 +1232,13 @@ In most applications, it is desirable to avoid the added complexity of a PKI-bac
 To handle these cases, ZRTP allows for an OPTIONAL signature feature, which allows the SAS to be checked without human participation. The SAS MAY be signed and the signature sent inside the Confirm1, Confirm2 (Figure 10), or SASrelay (Figure 16) messages. The signature type (Section {{SignatureTypeBlockSec}}), length of the signature, and the key used to create the signature (or a link to it) are all sent along with the signature. The signature is calculated across the entire SAS hash result (sashash), from which the sasvalue was derived. The signatures exchanged in the encrypted Confirm1, Confirm2, or SASrelay messages MAY be used to authenticate the ZRTP exchange. A signature may be sent only in the initial media stream in a DH or ECDH ZRTP exchange, not in Multistream mode.
 
 The initiator computes its signature as follows:
+
 ~~~
 sigi = sign(Initiator's private key, "Initiator" || sashash)
 ~~~
+
 The responder computes its signature as follows:
+
 ~~~
 sigr = sign(Responder's private key, "Responder" || sashash)
 ~~~
