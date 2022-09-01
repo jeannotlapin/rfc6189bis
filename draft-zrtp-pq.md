@@ -35,12 +35,6 @@ author:
         org: Orange
         email: loic.ferreira@orange.com
 
-      -
-        ins: T. Cross
-        name: Travis Cross
-        org: OfficeTone
-        email: tc@traviscross.com
-
 
 contributor:
 
@@ -720,7 +714,9 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 |---
 | "BIK1" | "B1" | Bike-L1 |
 |---
-| "BIK3" | "B3" | Bike-L3 |
+| "BIK2" | "B2" | Bike-L3 |
+|---
+| "BIK3" | "B3" | Bike-L5 |
 |---
 | "HQC1" | "H1" | HQC-128 |
 |---
@@ -743,23 +739,33 @@ The ZRTP messages are defined in {{ZRTPMessageFormats}} and are of variable leng
 {: #PostQuantumKeyAgreementTypeBlockValues title="Post Quantum Key Agreement Type Block values"}
 
 |---
-| Key Agreement Type Block | message words | Meaning |
+| Key Agreement Type Block | Meaning |
 |---------------|:-------:|:---------:|:-----------------------------:|
-| "Prsh" |    -  |     -   |  Preshared Non-DH mode |
+| "Prsh" | Preshared Non-DH mode |
 |---
-| "Mult" |    -  |     -   |  Multistream Non-DH mode |
+| "Mult" | Multistream Non-DH mode |
 |---
 {: #KeyAgreementTypeBlockValuesPrshMult title="Key Agreement Type Block values for Preshared and Multistream mode"}
 
 #### Hybrid KEM designation
 
-The Hybrid KEM, constructed as decribed in {{HybridKEMSec}}, combines an ECDH algorithm(X25519, X41417 or X448) used in KEM form as described in {{ECHDBasedKEMSec}} and one of the PQ KEM from {{KeyAgreementTypeBlockValuesDHMode}}. The 4 characters char describing an hybrid KEM key agreement type block is built using the "Short Type Block" from {{KeyAgreementTypeBlockValuesDHMode}} and {{PostQuantumKeyAgreementTypeBlockValues}}. The ECDH-based KEM is always mentionned first. Examples:
+The Hybrid KEM, constructed as decribed in {{HybridKEMSec}}, can combine several KEMs. It is recommended to use one ECDH algorithm(X25519, X41417 or X448) used in KEM form as described in {{ECHDBasedKEMSec}} and one or more of the PQ KEM from {{KeyAgreementTypeBlockValuesDHMode}}. The 4 characters char describing an hybrid KEM key agreement type block is built using the "Short Type Block" from {{KeyAgreementTypeBlockValuesDHMode}} and {{PostQuantumKeyAgreementTypeBlockValues}}. The ECDH-based KEM is always mentionned first.
+
+For an hybrid scheme combining one ECDH and one PQ KEM, the key agreement type block concatenates the 2 short type blocks. Examples:
 
 * X25519/Kyber512: "X1K1"
 
 * X448/Saber: "X3A2"
 
 * X41417/Bike-L3: "X2B3"
+
+For an hybrid scheme combining one ECDH and two PQ KEM, the key agreement type block uses the short type blocks first letter and one number for the algorithm variation applied to the three algorithms involved. This limit the three parties hybrid to some combinations. Examples:
+
+* X25519/Kyber512/HQC128: "XKH1"
+
+* X448/Kyber1024/HQC256: "XKH3"
+
+* X25519/Kyber1024/HQC192: impossible to produce using the described method.
 
 ### SAS Type Block
 
@@ -1170,32 +1176,37 @@ The implicit value ECDHId defined as follow:
 
 ## KEM Combiner {#KEMcombiner}
 
-Section 3.3 in {{Bin18}} describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two KEMs using HMAC-SHA as dual Pseudo Random Function and extractor.
+Section 3.3 in {{Bin18}} describes a way of combining several KEMs into one. We apply this to build an hybrid KEM from two or more KEMs using HMAC-SHA as dual Pseudo Random Function and extractor.
 
-The two combined KEMs are noted KEM\_1 and KEM\_2. PublicKey, secretKey and cipherText sizes are implicitly known for each component KEM, so the function "split" can separate two concatenated entities.
+
+PublicKey, secretKey and cipherText sizes are implicitly known for each component KEM, so the function "split" can separate the concatenated entities. The following pseudo code combines n KEMs together, each component is noted KEM\[i\].
 
 * Generate a fresh set of key pair:
 
 ~~~
 publicKey, secretKey = KEMgenKey():
-   pk1, sk1 = KEM_1.genKey()
-   pk2, sk2 = KEM_2.genKey()
-   return pk1 || pk2, sk1 || sk2
+   for i in [1..n]
+       pk[i], sk[i] = KEM[i].genKey()
+
+   return pk[1] || .. || pk[n], sk[1] || .. || sk[n]
 ~~~
 
 * Generate a sharedSecret and encapsulate it in cipherText using the given publicKey:
 
 ~~~
 sharedSecret, cipherText = KEMencaps( publicKey ):
-   pk1, pk2 = split( publicKey )
+   pk[1], .. , pk[n] = split( publicKey )
 
-   ss1, ct1 = KEM_1.encaps( pk1 )
-   ss2, ct2 = KEM_2.encaps( pk2 )
-   cipherText = ct1 || ct2
+   for i in [1..n]
+      ss[i], ct[i] = KEM[i].encaps( pk[i] )
 
-   ke = HMAC( "", ss1 )
-   kd = HMAC( ke, ss2 )
-   sharedSecret = HMAC( kd, cipherText)
+   cipherText = ct[1] || .. || ct[n]
+
+   k[1] = HMAC( "", ss[1] )
+   for in in [2..n]
+       k[i] = HMAC( k[i-1], ss[i] )
+
+   sharedSecret = HMAC( k[n], cipherText)
 
    return sharedSecret, cipherText
 ~~~
@@ -1204,15 +1215,17 @@ sharedSecret, cipherText = KEMencaps( publicKey ):
 
 ~~~
 sharedSecret = KEMdecaps( cipherText, secretKey ):
-   sk1, sk2 = split( secretKey )
-   ct1, ct2 = split( cipherText )
+   sk[1], .. , sk[n] = split( secretKey )
+   ct[1], .. , ct[n] = split( cipherText )
 
-   ss1 = KEM_1.decaps( ct1, sk1 )
-   ss2 = KEM_2.decaps( ct2, sk2 )
+   for i in [1..n]
+       ss[i] = KEM[i].decaps( ct[i], sk[i] )
 
-   ke = HMAC( "", ss1 )
-   kd = HMAC( ke, ss2 )
-   sharedSecret = HMAC( kd, cipherText )
+   k[1] = HMAC( "", ss1 )
+   for in in [2..n]
+       k[i] = HMAC( k[i-1], ss[i] )
+
+   sharedSecret = HMAC( k[n], cipherText )
 
    return sharedSecret
 ~~~
