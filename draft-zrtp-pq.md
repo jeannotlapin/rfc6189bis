@@ -588,7 +588,7 @@ Preshared mode is only included in this specification to meet the R-REUSE requir
 
 # ZRTP Packets
 
-## ZRTP Packet Formats
+## ZRTP Packet Formats {#ZRTPPacketFormatsSec}
 
 All ZRTP packets messages use the message format defined in {{FigNonFragmentedMessage}} and {{FigFragmentedMessage}}.  All word lengths referenced in this specification are 32 bits, or 4 octets.  All integer fields are carried in network byte order, that is, most-significant byte (octet) first, commonly known as big-endian.
 
@@ -1255,7 +1255,7 @@ If a ZRTP endpoint supports incoming signatures (evidenced by setting the (S) fl
 
 ECDSA {{NIST-FIPS186-5}} has a feature that allows most of the signature calculation to be done in advance of the session, reducing latency during call setup. This is useful for low-power mobile handsets.
 
-ECDSA is preferred because it has compact keys as well as compact signatures. If the signature along with its public key certificate are insufficiently compact, the Confirm message may become too long for the maximum transmission unit (MTU) size, and UDP fragmentation may result. Some firewalls and NATs may discard fragmented UDP packets, which would cause the ZRTP exchange to fail. It is RECOMMENDED that a ZRTP endpoint avoid sending signatures if they would cause UDP fragmentation. For a discussion on MTU size and PMTU discovery, see {{RFC1191}} and {{RFC1981}}.
+ECDSA is preferred because it has compact keys as well as compact signatures. However, if the signature along with its public key certificate are insufficiently compact, the Confirm message may become too long for the maximum transmission unit (MTU) size, and fragmentation is applied to ZRTP messages (see Section {{ZRTPPacketFormatsSec}}). This avoids using UDP fragmentation. Indeed, if UDP fragmentation is applied, then some firewalls and NATs may discard fragmented UDP packets, which would cause the ZRTP exchange to fail. Such an issue is now mitigated thanks to ZRTP messages fragmentation.
 
 From a packet-size perspective, ECDSA produces equally compact signatures for a given signature strength.
 
