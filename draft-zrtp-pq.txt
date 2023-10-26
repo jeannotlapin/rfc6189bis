@@ -5,10 +5,10 @@
 Network Working Group                                      P. Zimmermann
 Internet-Draft                                             Silent Circle
 Intended status: Informational                                 J. Pascal
-Expires: 6 March 2023                          Belledonne Communications
+Expires: 28 April 2024                         Belledonne Communications
                                                              L. Ferreira
                                                                   Orange
-                                                        2 September 2022
+                                                         26 October 2023
 
 
   PostQuantum algorithms in ZRTP Media Path Key Agreement for Unicast
@@ -41,11 +41,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2023.
+   This Internet-Draft will expire on 28 April 2024.
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -794,12 +794,12 @@ Table of Contents
    A hash of the received and sent ZRTP messages in the current ZRTP
    exchange in the following order is calculated by both parties:
 
-   total_hash = hash(Hello of responder || Commit
+   total_hash = hash(Hello of initiator || Hello of responder || Commit
                     || DHPart1 || DHPart2)
 
    or
 
-   total_hash = hash(Hello of responder || Commit
+   total_hash = hash(Hello of initiator || Hello of responder || Commit
                     || KEMPart1 || KEMPart2)
 
    Note that only the ZRTP messages not the entire ZRTP packets, are
@@ -1647,11 +1647,11 @@ Table of Contents
 
    The initiator computes its signature as follows:
 
-   sigi = sign(Initiator's private key, "Initiator" || sashash)
+sigi = sign(Initiator's private key, "Initiator" || Initiator's public key || sashash)
 
    The responder computes its signature as follows:
 
-   sigr = sign(Responder's private key, "Responder" || sashash)
+sigr = sign(Responder's private key, "Responder" || Responder's public key || sashash)
 
    Although the signature is sent, the material that is signed, the
    sashash, is not sent with it in the Confirm message, since both
