@@ -515,12 +515,12 @@ KEMResult size is defined by the algorithm used. See {{keyAgreementTypeBlock}} f
 A hash of the received and sent ZRTP messages in the current ZRTP exchange in the following order is calculated by both parties:
 
 ~~~
-total_hash = hash(Hello of responder || Commit
+total_hash = hash(Hello of initiator || Hello of responder || Commit
                  || DHPart1 || DHPart2)
 
 or
 
-total_hash = hash(Hello of responder || Commit
+total_hash = hash(Hello of initiator || Hello of responder || Commit
                  || KEMPart1 || KEMPart2)
 ~~~
 
@@ -1247,13 +1247,13 @@ To handle these cases, ZRTP allows for an OPTIONAL signature feature, which allo
 The initiator computes its signature as follows:
 
 ~~~
-sigi = sign(Initiator's private key, "Initiator" || sashash)
+sigi = sign(Initiator's private key, "Initiator" || Initiator's public key || sashash)
 ~~~
 
 The responder computes its signature as follows:
 
 ~~~
-sigr = sign(Responder's private key, "Responder" || sashash)
+sigr = sign(Responder's private key, "Responder" || Responder's public key || sashash)
 ~~~
 
 Although the signature is sent, the material that is signed, the sashash, is not sent with it in the Confirm message, since both parties have already independently calculated the sashash. That is not the case for the SASrelay message, which must relay the sashash. To avoid unnecessary signature calculations, a signature SHOULD NOT be sent if the other ZRTP endpoint did not set the (S) flag in the Hello message (Section {{HelloMessageSec}}).
